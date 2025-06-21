@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Categories() {
   return (
-    <div className="grid grid-cols-2 gap-6">
+    <div className="md:grid grid-cols-2 gap-6 hidden ">
       <Link
         href="/healt"
         className="bg-gradient-to-r from-orange-500 orange-900 to-white-50 w-[200px] h-[200px] flex items-center justify-center font-bold rounded-md hover:from-orange-500 hover:to-orange-900 transition-colors duration-500"
