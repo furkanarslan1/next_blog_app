@@ -30,17 +30,15 @@ export default function Swipper() {
                 className="object-contain object-center   rounded-md"
               />
 
-              <div className="absolute bottom-0 p-4 z-10">
+              <div className="absolute bottom-10 p-4 z-10">
                 <div className="flex flex-col  gap-4">
-                  <h5 className="text-amber-300 font-bold text-lg">Header</h5>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Laborum eos esse eaque expedita a labore modi dolor quos
-                    tempore aut eius pariatur quibusdam harum, ad excepturi
-                    omnis, est dicta ratione in. Recusandae voluptatibus autem
-                    reiciendis, quasi pariatur necessitatibus placeat totam
-                    inventore, eius asperiores minus rem ut debitis sit iusto
-                    aliquam.
+                  <h5 className="text-amber-300 font-bold text-sm md:text-lg">
+                    Header
+                  </h5>
+                  <p className="text-sm">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Veniam pariatur possimus, cumque consequatur nulla sequi eos
+                    minima quas labore animi!
                   </p>
                 </div>
               </div>
@@ -59,17 +57,15 @@ export default function Swipper() {
                 className="object-contain object-center   rounded-md"
               />
 
-              <div className="absolute bottom-0 p-4 z-10">
+              <div className="absolute bottom-10 p-4 z-10">
                 <div className="flex flex-col  gap-4">
-                  <h5 className="text-amber-300 font-bold text-lg">Header</h5>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Laborum eos esse eaque expedita a labore modi dolor quos
-                    tempore aut eius pariatur quibusdam harum, ad excepturi
-                    omnis, est dicta ratione in. Recusandae voluptatibus autem
-                    reiciendis, quasi pariatur necessitatibus placeat totam
-                    inventore, eius asperiores minus rem ut debitis sit iusto
-                    aliquam.
+                  <h5 className="text-amber-300 font-bold text-sm md:text-lg">
+                    Header
+                  </h5>
+                  <p className="text-sm">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                    Commodi explicabo corporis repellendus assumenda sint
+                    accusantium, quaerat provident voluptatem impedit minima?
                   </p>
                 </div>
               </div>
@@ -88,17 +84,15 @@ export default function Swipper() {
                 className="object-contain object-center   rounded-md"
               />
 
-              <div className="absolute bottom-0 p-4 z-10">
+              <div className="absolute bottom-10 p-4 z-10">
                 <div className="flex flex-col  gap-4">
-                  <h5 className="text-amber-300 font-bold text-lg">Header</h5>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Laborum eos esse eaque expedita a labore modi dolor quos
-                    tempore aut eius pariatur quibusdam harum, ad excepturi
-                    omnis, est dicta ratione in. Recusandae voluptatibus autem
-                    reiciendis, quasi pariatur necessitatibus placeat totam
-                    inventore, eius asperiores minus rem ut debitis sit iusto
-                    aliquam.
+                  <h5 className="text-amber-300 font-bold  text-sm md:text-lg">
+                    Header
+                  </h5>
+                  <p className="text-sm">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Molestiae dolor cumque nisi quam quod sed eaque autem
+                    accusamus ullam eius.
                   </p>
                 </div>
               </div>

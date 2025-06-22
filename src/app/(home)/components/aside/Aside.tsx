@@ -10,7 +10,7 @@ export default function Aside() {
     "Tops"
   );
   return (
-    <div className=" border-1 border-slate-400 p-4 rounded-md shadow-white shadow-lg h-[500px] overflow-y-scroll ">
+    <div className=" border-1 border-slate-400 p-4 rounded-md shadow-white shadow-lg h-[500px] overflow-hidden text-sm md:text-md">
       <div>
         <header className="flex items-center gap-4 justify-center font-bold divide-x-2 border-b-1 pb-3 ">
           {["Tops", "Last", "Popular"].map((tab) => (
