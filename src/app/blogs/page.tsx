@@ -33,7 +33,7 @@ export default async function BlogsPage() {
               </div>
 
               <Link
-                href="/"
+                href={`/blogs/${post.id}`}
                 className="px-4 py-2 bg-white rounded-2xl text-black cursor-pointer hover:opacity-60 transition-all duration-300"
               >
                 Detail

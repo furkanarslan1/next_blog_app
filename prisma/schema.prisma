@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  // output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -14,47 +13,38 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model Post {
-  id        Int       @id @default(autoincrement())
-  title     String
-  content   String
-  imageUrl  String?   
+  id          Int        @id @default(autoincrement())
+  title       String
+  content     String
+  imageUrl    String?
   description String?
-  slug        String   @unique
-  likeCount   Int       @default(0) 
-  published Boolean   @default(false)
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  slug        String     @unique
+  likeCount   Int        @default(0)
+  published   Boolean    @default(false)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
 
-  // İlişkiler
-  comments  Comment[] // Bir postun birden çok yorumu olur
-  ratings   Rating[]  // Bir postun birden çok puanı olur
+  category    Category?  @relation(fields: [categoryId], references: [id])
+  categoryId  Int?
+
+  comments    Comment[]
 }
-
 
 model Comment {
   id        Int      @id @default(autoincrement())
   content   String
   createdAt DateTime @default(now())
-  
-  // İlişki
+
   post      Post     @relation(fields: [postId], references: [id])
   postId    Int
 }
 
-model Rating {
-  id        Int      @id @default(autoincrement())
-  score     Int      // örn. 1-5 arası
-  createdAt DateTime @default(now())
+model Category {
+  id    Int     @id @default(autoincrement())
+  name  String  @unique
 
-  // İlişki
-  post      Post     @relation(fields: [postId], references: [id])
-  postId    Int
+  posts Post[]
 }
 
 
-model Test {
-  id Int @id @default(autoincrement())
-  name String
-}

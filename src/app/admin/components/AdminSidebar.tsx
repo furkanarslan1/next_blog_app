@@ -21,45 +21,46 @@ export default function AdminSidebar() {
         className="bg-transparent backdrop-blur-3xl shadow-2xl shadow-white"
       >
         <SheetHeader>
-          <SheetTitle>Admin Panel</SheetTitle>
-          <SheetDescription>
-            <div className="p-4 border-r-1 rounded-2xl flex flex-col gap-6">
-              <Link
-                href="/admin/posts/new"
-                className="font-bold text-white border-1 px-4 py-2 rounded-2xl hover:bg-white hover:text-black transition-all duration-300"
-              >
-                Users
-              </Link>
-              <Link
-                href="/admin/posts/new"
-                className="font-bold text-white  border-1 px-4 py-2 rounded-2xl hover:bg-white hover:text-black transition-all duration-300"
-              >
-                Add New Post
-              </Link>
-
-              <Link
-                href="/admin/posts/delete"
-                className="font-bold text-white  border-1 px-4 py-2 rounded-2xl hover:bg-white hover:text-black transition-all duration-300"
-              >
-                Delete Post
-              </Link>
-
-              <Link
-                href="/admin/posts/new"
-                className="font-bold text-white  border-1 px-4 py-2 rounded-2xl hover:bg-white hover:text-black transition-all duration-300"
-              >
-                Home Slider
-              </Link>
-
-              <Link
-                href="/admin/posts/delete"
-                className="font-bold text-white  border-1 px-4 py-2 rounded-2xl hover:bg-white hover:text-black transition-all duration-300"
-              >
-                Comments
-              </Link>
-            </div>
-          </SheetDescription>
+          <SheetTitle className="text-white font-bold  p-4 border-b-1 text-center">
+            Admin Panel
+          </SheetTitle>
+          <SheetDescription></SheetDescription>
         </SheetHeader>
+        <div className="p-4 border-r-1 rounded-2xl flex flex-col gap-6">
+          <Link
+            href="/admin/posts/new"
+            className="font-bold text-white border-1 px-4 py-2 rounded-2xl hover:bg-white hover:text-black transition-all duration-300"
+          >
+            Users
+          </Link>
+          <Link
+            href="/admin/posts/new"
+            className="font-bold text-white  border-1 px-4 py-2 rounded-2xl hover:bg-white hover:text-black transition-all duration-300"
+          >
+            Add New Post
+          </Link>
+
+          <Link
+            href="/admin/posts/delete"
+            className="font-bold text-white  border-1 px-4 py-2 rounded-2xl hover:bg-white hover:text-black transition-all duration-300"
+          >
+            Delete Post
+          </Link>
+
+          <Link
+            href="/admin/posts/new"
+            className="font-bold text-white  border-1 px-4 py-2 rounded-2xl hover:bg-white hover:text-black transition-all duration-300"
+          >
+            Home Slider
+          </Link>
+
+          <Link
+            href="/admin/posts/delete"
+            className="font-bold text-white  border-1 px-4 py-2 rounded-2xl hover:bg-white hover:text-black transition-all duration-300"
+          >
+            Comments
+          </Link>
+        </div>
       </SheetContent>
     </Sheet>
   );
