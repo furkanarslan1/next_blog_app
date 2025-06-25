@@ -38,7 +38,7 @@ export default function AdminSidebar() {
               </Link>
 
               <Link
-                href="/admin/posts/new"
+                href="/admin/posts/delete"
                 className="font-bold text-white  border-1 px-4 py-2 rounded-2xl hover:bg-white hover:text-black transition-all duration-300"
               >
                 Delete Post
@@ -52,7 +52,7 @@ export default function AdminSidebar() {
               </Link>
 
               <Link
-                href="/admin/posts/new"
+                href="/admin/posts/delete"
                 className="font-bold text-white  border-1 px-4 py-2 rounded-2xl hover:bg-white hover:text-black transition-all duration-300"
               >
                 Comments
