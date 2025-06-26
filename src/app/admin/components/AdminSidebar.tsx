@@ -60,6 +60,13 @@ export default function AdminSidebar() {
           >
             Comments
           </Link>
+
+          <Link
+            href="/admin/posts/category"
+            className="font-bold text-white  border-1 px-4 py-2 rounded-2xl hover:bg-white hover:text-black transition-all duration-300"
+          >
+            Category
+          </Link>
         </div>
       </SheetContent>
     </Sheet>
