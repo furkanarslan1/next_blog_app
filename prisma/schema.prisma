@@ -30,9 +30,9 @@ model Post {
 
   category    Category?  @relation(fields: [categoryId], references: [id])
   categoryId  Int?
-
+  homeSlider  HomeSlider[]
   comments    Comment[]
-  homeslider  HomeSlider[]
+
 }
 
 model Comment {
@@ -54,10 +54,11 @@ model Category {
 
 model HomeSlider {
   id       Int      @id @default(autoincrement())
-  order    Int      @default(0) // hangi sırayla görünecek
+  order    Int      @default(0) 
   post     Post     @relation(fields: [postId], references: [id])
   postId   Int
   addedAt  DateTime @default(now())
 }
+
 
 
