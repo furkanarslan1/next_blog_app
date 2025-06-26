@@ -21,7 +21,10 @@ model Post {
   description String?
   slug        String     @unique
   likeCount   Int        @default(0)
-  published   Boolean    @default(false)
+   tags            String?    
+  keywords        String?    
+  metaDescription String?
+
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
 
@@ -29,6 +32,7 @@ model Post {
   categoryId  Int?
 
   comments    Comment[]
+  homeslider  HomeSlider[]
 }
 
 model Comment {
@@ -45,6 +49,15 @@ model Category {
   name  String  @unique
 
   posts Post[]
+}
+
+
+model HomeSlider {
+  id       Int      @id @default(autoincrement())
+  order    Int      @default(0) // hangi sırayla görünecek
+  post     Post     @relation(fields: [postId], references: [id])
+  postId   Int
+  addedAt  DateTime @default(now())
 }
 
 

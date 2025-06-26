@@ -29,7 +29,7 @@ export default async function BlogsPage() {
               </div>
               <div>
                 <h2 className="text-xl font-semibold">{post.title}</h2>
-                <p>{post.content}</p>
+                <p>{post.description}</p>
               </div>
 
               <Link
