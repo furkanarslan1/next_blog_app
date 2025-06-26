@@ -54,7 +54,7 @@ model Category {
 
 model HomeSlider {
   id       Int      @id @default(autoincrement())
-  order    Int      @default(0) 
+  order    Int     @unique
   post     Post     @relation(fields: [postId], references: [id])
   postId   Int
   addedAt  DateTime @default(now())
