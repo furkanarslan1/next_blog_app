@@ -13,9 +13,7 @@ export default function Home() {
         <Categories />
         <Aside />
       </div>
-      <div>
-        <HomeBlog />
-      </div>
+      <div>{/* <HomeBlog /> */}</div>
     </div>
   );
 }

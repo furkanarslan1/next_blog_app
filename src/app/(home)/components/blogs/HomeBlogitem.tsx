@@ -3,12 +3,16 @@ import Link from "next/link";
 import React from "react";
 
 interface HomeBlogitemsProps {
-  image: string;
-  header: string;
-  p: string;
+  imageUrl: string;
+  title: string;
+  description: string;
 }
 
-export default function HomeBlogitem({ image, header, p }: HomeBlogitemsProps) {
+export default function HomeBlogitem({
+  imageUrl,
+  title,
+  description,
+}: HomeBlogitemsProps) {
   return (
     <div>
       <Link
@@ -18,14 +22,14 @@ export default function HomeBlogitem({ image, header, p }: HomeBlogitemsProps) {
         <div className="relative w-full h-[100px] md:h-[150px] md:w-[350px]">
           <Image
             fill
-            src={image}
+            src={imageUrl}
             alt="blog image"
             className="object-contain roundded-xl"
           />
         </div>
         <div className="space-y-4 text-sm">
-          <h6 className="font-bold md:text-xl">{header}</h6>
-          <p>{p}</p>
+          <h6 className="font-bold md:text-xl">{title}</h6>
+          <p>{description}</p>
         </div>
       </Link>
     </div>
