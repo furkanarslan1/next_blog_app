@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 type FormData = {
@@ -17,12 +17,24 @@ type FormData = {
   slug?: string; // optional
 };
 
+interface Category {
+  name: string;
+  id: number;
+}
+
 export default function NewPostPage() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [imagePreview, setImagePreview] = useState<string>("");
-
+  const [categories, setCategories] = useState<Category[]>([]);
   const { register, handleSubmit, reset } = useForm<FormData>();
+
+  useEffect(() => {
+    fetch("/api/category")
+      .then((res) => res.json())
+      .then((data) => setCategories(data))
+      .catch((err) => console.log(err.message));
+  }, []);
 
   async function onSubmit(data: FormData) {
     setIsLoading(true);
@@ -166,10 +178,8 @@ export default function NewPostPage() {
           className="block bg-black border p-2 rounded-lg"
           {...register("categoryId")}
         >
-          <option value="0">Health</option>
-          <option value="1">History</option>
-          <option value="2">Sports</option>
-          <option value="3">Movie</option>
+          {categories &&
+            categories.map((cat) => <option value={cat.id}>{cat.name}</option>)}
         </select>
 
         {/* Submit */}
