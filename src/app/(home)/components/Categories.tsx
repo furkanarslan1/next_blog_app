@@ -37,13 +37,26 @@ export default function Categories() {
           {cat.name}
         </Link>
       ))}
-
+      {/* 
       <Link
         href={"/categories"}
         className="flex items-center gap-4 bg-white text-black rounded-2xl px-4 py-2 max-w-40 cursor-pointer hover:opacity-80 transition-all duration-300"
       >
         <FaArrowAltCircleRight className="text-xl" />
         <span>Category</span>
+      </Link> */}
+      <Link
+        href="/categories"
+        className="relative group overflow-hidden flex items-center gap-4 rounded-2xl px-4 py-2 w-48 cursor-pointer font-bold bg-white text-black transition-all duration-300"
+      >
+        {/* Kayan siyah arkaplan efekti */}
+        <span className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-800 ease-out z-0"></span>
+
+        {/* İçerik */}
+        <FaArrowAltCircleRight className="text-xl z-10 transition-all duration-300 group-hover:text-white" />
+        <span className="z-10 transition-all duration-300 group-hover:text-white">
+          Category
+        </span>
       </Link>
 
       {/* <Link

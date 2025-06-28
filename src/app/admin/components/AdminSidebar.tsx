@@ -12,7 +12,7 @@ import {
 
 export default function AdminSidebar() {
   return (
-    <Sheet>
+    <Sheet defaultOpen>
       <SheetTrigger className="bg-white px-4 py-2 text-black rounded-2xl font-bold cursor-pointer">
         Admin
       </SheetTrigger>
