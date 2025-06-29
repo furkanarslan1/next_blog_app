@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 
 interface Blog {
@@ -8,10 +9,10 @@ interface Blog {
   title: string;
 }
 
-export default function Popular() {
+export default function MostCommented() {
   const [posts, setPosts] = useState<Blog[]>([]);
   useEffect(() => {
-    fetch("/api/posts/popular")
+    fetch("/api/posts/mostCommented")
       .then((res) => res.json())
       .then((data) => setPosts(data))
       .catch((err) => console.log(err.message));
