@@ -58,10 +58,10 @@ export default function Header() {
         </div>
 
         <Link
-          href="/sign-in"
+          href="/login"
           className="bg-white/80 text-black px-4 py-2 rounded-md hover:bg-white/60 transition-all duration-500"
         >
-          Sign In
+          Login
         </Link>
       </div>
 
