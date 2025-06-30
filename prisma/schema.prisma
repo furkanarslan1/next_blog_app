@@ -16,6 +16,8 @@ model User {
   password       String
   avatarUrl      String?
 
+  role String @default("user") 
+
   createdAt      DateTime   @default(now())
 
   likedPosts     Post[]     @relation("PostLikes")

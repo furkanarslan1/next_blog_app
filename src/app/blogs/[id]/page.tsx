@@ -1,6 +1,6 @@
 // app/blogs/[id]/page.tsx
 
-import prisma from "@/lib/prisma";
+import { prisma } from "@/lib/prisma";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 

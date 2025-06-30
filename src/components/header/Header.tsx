@@ -4,7 +4,7 @@ import React from "react";
 import { headerLinks, socialLinks } from "./headerLinks";
 import Link from "next/link";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import clsx from "clsx";
 
 import {
@@ -17,9 +17,18 @@ import {
 } from "@/components/ui/sheet";
 
 import { HiMenuAlt1 } from "react-icons/hi";
+import { useauthStore } from "@/lib/stores/authStore";
 
 export default function Header() {
   const pathname = usePathname();
+  const user = useauthStore((state) => state.user);
+  const clearUser = useauthStore((state) => state.clearUser); // logout
+  const router = useRouter();
+  const handleLogout = async () => {
+    await fetch("/api/auth/logout", { method: "POST" });
+    clearUser();
+    router.push("/login");
+  };
   return (
     <nav className="flex items-center justify-between gap-4 p-4 lg:p-8 ">
       <div className="flex items-center gap-16">
@@ -56,13 +65,27 @@ export default function Header() {
             </Link>
           ))}
         </div>
-
-        <Link
+        <div>
+          {user ? (
+            <div>
+              <p>Welcome, {user.firstName}</p>
+              <button onClick={handleLogout}>Logout</button>
+            </div>
+          ) : (
+            <Link
+              className="bg-white/80 text-black px-4 py-2 rounded-md hover:bg-white/60 transition-all duration-500"
+              href="/login"
+            >
+              Login
+            </Link>
+          )}
+        </div>
+        {/* <Link
           href="/login"
           className="bg-white/80 text-black px-4 py-2 rounded-md hover:bg-white/60 transition-all duration-500"
         >
           Login
-        </Link>
+        </Link> */}
       </div>
 
       <div className=" md:hidden ">

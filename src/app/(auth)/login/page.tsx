@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import { useauthStore } from "@/lib/stores/authStore";
 
 const loginSchema = z.object({
   email: z.string().email("Please enter valid e-mail"),
@@ -38,6 +39,8 @@ export default function Login() {
         setErrorMsg(result.message || "Login is unsuccesfull");
       }
       console.log("Login is succesfull", result);
+
+      useauthStore.getState().setUser(result.user);
       router.push("/");
     } catch (err) {
       setErrorMsg("unsuccesfull");

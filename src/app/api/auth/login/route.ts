@@ -3,6 +3,8 @@ import { prisma } from "@/lib/prisma";
 
 import bcrypt from "bcryptjs";
 
+import jwt from "jsonwebtoken";
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();
@@ -31,12 +33,34 @@ export async function POST(req: Request) {
       );
     }
 
-    const { password: _, ...userData } = user;
+    const token = jwt.sign(
+      {
+        id: user.id,
+        email: user.email,
+      },
+      process.env.JWT_SECRET!,
+      { expiresIn: "7d" }
+    );
 
-    return NextResponse.json(
-      { message: "Login successful", user: userData },
+    const response = NextResponse.json(
+      { message: "Login succesfull" },
       { status: 200 }
     );
+
+    response.cookies.set({
+      name: "token",
+      value: token,
+      httpOnly: true,
+      path: "/",
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 60 * 60 * 24 * 7,
+    });
+    return response;
+    // const { password: _, ...userData } = user;
+    // return NextResponse.json(
+    //   { message: "Login successful", user: userData },
+    //   { status: 200 }
+    // );
   } catch (err) {
     console.error("Login error:", err);
     return NextResponse.json(
