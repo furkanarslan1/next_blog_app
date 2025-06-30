@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 
 const loginSchema = z.object({
   email: z.string().email("Please enter valid e-mail"),
@@ -19,6 +20,8 @@ export default function Login() {
   } = useForm<LoginFormData>({ resolver: zodResolver(loginSchema) });
 
   const [errorMsg, setErrorMsg] = useState("");
+
+  const router = useRouter();
   const onSubmit = async (data: LoginFormData) => {
     setErrorMsg("");
 
@@ -35,6 +38,7 @@ export default function Login() {
         setErrorMsg(result.message || "Login is unsuccesfull");
       }
       console.log("Login is succesfull", result);
+      router.push("/");
     } catch (err) {
       setErrorMsg("unsuccesfull");
     }
