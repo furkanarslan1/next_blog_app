@@ -1,6 +1,8 @@
 "use client";
+import { useauthStore } from "@/lib/stores/authStore";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -23,6 +25,14 @@ export default function Register() {
 
   const [message, setMessage] = useState("");
 
+  const router = useRouter();
+  const user = useauthStore((state) => state.user);
+  useEffect(() => {
+    if (user) {
+      router.replace("/");
+    }
+  }, [user, router]);
+
   const onSubmit = async (data: RegisterFormData) => {
     setMessage("");
     try {
@@ -34,7 +44,7 @@ export default function Register() {
 
       const result = await res.json();
 
-      if (!res.ok) {
+      if (res.ok) {
         setMessage("Registration succesfull");
       }
     } catch (err) {

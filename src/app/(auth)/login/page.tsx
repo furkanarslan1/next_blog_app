@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -23,6 +23,13 @@ export default function Login() {
   const [errorMsg, setErrorMsg] = useState("");
 
   const router = useRouter();
+  const user = useauthStore((state) => state.user);
+  useEffect(() => {
+    if (user) {
+      router.replace("/");
+    }
+  }, [user, router]);
+
   const onSubmit = async (data: LoginFormData) => {
     setErrorMsg("");
 
