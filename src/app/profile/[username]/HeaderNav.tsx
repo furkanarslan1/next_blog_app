@@ -16,7 +16,7 @@ export default function HeaderNav({ username }: Props) {
       <Link
         href={`/profile/${username}`}
         className={clsx(
-          " font-bold px-4 py-2 border-1 border-white rounded-2xl w-30 text-center",
+          " font-bold px-4 py-2 border-1 border-white rounded-2xl w-30 text-center hover:opacity-80",
           segment === null &&
             "bg-white rounded-2xl  text-black shadow-white shadow-2xl"
         )}
@@ -27,12 +27,22 @@ export default function HeaderNav({ username }: Props) {
       <Link
         href={`/profile/${username}/user-options`}
         className={clsx(
-          "font-bold px-4 py-2 border-1 border-white rounded-2xl w-30 text-center",
+          "font-bold px-4 py-2 border-1 border-white rounded-2xl w-30 text-center hover:opacity-80",
           segment === "user-options" &&
             "bg-white rounded-2xl  text-black shadow-white shadow-2xl"
         )}
       >
         Options
+      </Link>
+      <Link
+        href={`/profile/${username}/user-comments`}
+        className={clsx(
+          "font-bold px-4 py-2 border-1 border-white rounded-2xl w-30 text-center hover:opacity-80",
+          segment === "user-comments" &&
+            "bg-white rounded-2xl  text-black shadow-white shadow-2xl"
+        )}
+      >
+        Comments
       </Link>
     </header>
   );

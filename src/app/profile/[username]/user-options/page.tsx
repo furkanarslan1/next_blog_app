@@ -55,7 +55,7 @@ export default function UserOptions() {
 
       <button
         type="submit"
-        className="bg-white text-black px-4 py-2 rounded-md font-bold hover:opacity-80 shadow-white shadow-2xl cursor-pointer"
+        className="bg-white text-black px-4 py-2 rounded-md font-bold hover:opacity-80  cursor-pointer"
         disabled={loading}
       >
         {loading ? "Saving..." : "Save"}
