@@ -44,6 +44,16 @@ export default function HeaderNav({ username }: Props) {
       >
         Comments
       </Link>
+      <Link
+        href={`/profile/${username}/user-likes`}
+        className={clsx(
+          "font-bold px-4 py-2 border-1 border-white rounded-2xl w-30 text-center hover:opacity-80",
+          segment === "user-likes" &&
+            "bg-white rounded-2xl  text-black shadow-white shadow-2xl"
+        )}
+      >
+        Likes
+      </Link>
     </header>
   );
 }
