@@ -7,7 +7,7 @@ export default async function BlogsPage() {
   });
 
   if (!res.ok) {
-    throw new Error("Postlar yüklenemedi");
+    throw new Error("Error");
   }
 
   const posts = await res.json();
