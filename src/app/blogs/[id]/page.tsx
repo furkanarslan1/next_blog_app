@@ -4,12 +4,18 @@ import { notFound } from "next/navigation";
 import { format } from "date-fns";
 import { tr } from "date-fns/locale";
 import RelatedPosts from "./components/RelatedPosts";
+import Comments from "./components/Comments";
+import { getTokenFromCookies, verifyToken } from "@/lib/aut";
 
 export default async function BlogDetailPage({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
+  const token = await getTokenFromCookies();
+
+  const verified = token ? verifyToken(token) : null;
+  const currentUserId = verified ? Number(verified.id) : null;
   const { id } = await params;
   const numericId = Number(id);
 
@@ -22,8 +28,14 @@ export default async function BlogDetailPage({
       comments: {
         include: {
           user: {
-            select: { username: true },
+            select: { username: true, avatarUrl: true },
           },
+          likedByUsers: currentUserId
+            ? {
+                where: { id: currentUserId },
+                select: { id: true },
+              }
+            : false, // currentUserId yoksa çekme
         },
       },
     },
@@ -44,6 +56,13 @@ export default async function BlogDetailPage({
     },
     take: 4,
   });
+
+  const commentsWithLikedFlag = post.comments.map((comment) => ({
+    id: comment.id,
+    content: comment.content,
+    user: comment.user,
+    likedComments: comment.likedByUsers.length > 0, // Beğenmişse true
+  }));
 
   return (
     <div className="p-6 max-w-4xl mx-auto space-y-8">
@@ -93,7 +112,7 @@ export default async function BlogDetailPage({
         </div>
       )}
 
-      <p className="text-lg leading-7">{post.content}</p>
+      <p className="text-lg leading-7 ">{post.content}</p>
 
       {post.metaDescription && (
         <div className="text-sm text-gray-500 italic">
@@ -104,48 +123,8 @@ export default async function BlogDetailPage({
       <div className="mt-8">
         <h2 className="text-xl font-semibold border-b pb-2 mb-4">Comments</h2>
 
-        {post.comments.length === 0 ? (
-          <p>There is no comment yet</p>
-        ) : (
-          <div className="space-y-4">
-            {post.comments.map((comment) => (
-              <div
-                key={comment.id}
-                className="border p-3 rounded-md bg-gray-50 shadow-sm"
-              >
-                <p className="font-semibold">{comment.user.username}</p>
-                <p>{comment.content}</p>
-              </div>
-            ))}
-          </div>
-        )}
+        <Comments post={commentsWithLikedFlag} />
       </div>
-
-      {/* Related Posts */}
-      {/* {relatedPosts.length > 0 && (
-        <div className="mt-12">
-          <h2 className="text-xl font-bold mb-4 border-b pb-2">
-            Related blogs
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {relatedPosts.map((related) => (
-              <div key={related.id} className="border rounded-md p-4">
-                {related.imageUrl && (
-                  <div className="relative w-full aspect-video mb-2">
-                    <Image
-                      src={related.imageUrl}
-                      alt={related.title}
-                      fill
-                      className="object-cover rounded-md"
-                    />
-                  </div>
-                )}
-                <h3 className="text-lg font-semibold">{related.title}</h3>
-              </div>
-            ))}
-          </div>
-        </div>
-      )} */}
 
       <RelatedPosts relatedPosts={relatedPosts} />
     </div>
