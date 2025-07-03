@@ -15,8 +15,10 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Blog not found" }, { status: 404 });
   }
 
-  const prompt = `Bu bir blog yazısı: Başlık: ${post?.title} İçerik: ${post?.content} Kullanıcının bu blog hakkında bir sorusu var:
-Soru: ${question}  Bu soruya, sadece yukarıdaki blog içeriğini kullanarak net, açık ve dostça bir şekilde cevap ver.`;
+  const prompt = `This is a blog post: Title: ${post?.title} Content: ${post?.content} 
+The user has a question about this blog post:
+Question: ${question}  
+Answer this question clearly, directly, and in a friendly manner using only the blog content above.`;
 
   const response = await openai.chat.completions.create({
     messages: [{ role: "user", content: prompt }],

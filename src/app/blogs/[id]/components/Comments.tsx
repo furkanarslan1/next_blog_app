@@ -25,7 +25,7 @@ export default function Comments({ post }: Props) {
           {post.map((comment) => (
             <div
               key={comment.id}
-              className="border p-3 rounded-md bg-slate-300 shadow-sm text-black flex flex-col gap-4"
+              className="border p-3 rounded-md text-white shadow-sm text-black flex flex-col gap-4"
             >
               <div className="flex flex-col gap-4 justify-center ">
                 <div className="flex items-center gap-4">

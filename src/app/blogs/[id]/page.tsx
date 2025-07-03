@@ -6,6 +6,7 @@ import { tr } from "date-fns/locale";
 import RelatedPosts from "./components/RelatedPosts";
 import Comments from "./components/Comments";
 import { getTokenFromCookies, verifyToken } from "@/lib/aut";
+import BlogChatModal from "./components/BlogChatModal";
 
 export default async function BlogDetailPage({
   params,
@@ -64,8 +65,10 @@ export default async function BlogDetailPage({
     likedComments: comment.likedByUsers.length > 0, // Beğenmişse true
   }));
 
+  const isLoggedIn = !!currentUserId;
+
   return (
-    <div className="p-6 max-w-4xl mx-auto space-y-8">
+    <div className="p-6 max-w-4xl mx-auto space-y-8 text-sm md:text-md lg:text-lg">
       <h1 className="text-3xl font-bold border-b pb-4 text-center">
         {post.title}
       </h1>
@@ -119,6 +122,9 @@ export default async function BlogDetailPage({
           <strong>Meta Description:</strong> {post.metaDescription}
         </div>
       )}
+      <div>
+        <BlogChatModal postId={post.id} isLoggedIn={isLoggedIn} />
+      </div>
 
       <div className="mt-8">
         <h2 className="text-xl font-semibold border-b pb-2 mb-4">Comments</h2>
