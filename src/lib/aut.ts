@@ -1,8 +1,6 @@
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
-import { IncomingMessage } from "http";
-
-import { parse } from "cookie";
+import { prisma } from "./prisma";
 
 interface JwtPayloadCustom {
   id: string;
@@ -28,17 +26,16 @@ export function verifyToken(token: string): JwtPayloadCustom | null {
   }
 }
 
-// export function getUserFromRequest(req: IncomingMessage) {   // this is old road don't use ! be  current
-//   const cookiesHeader = req.headers.cookie;
-//   if (!cookiesHeader) return null;
+export async function getUserFromToken(req: Request) {
+  const token = await getTokenFromCookies();
+  if (!token) return null;
 
-//   const token = parse(cookiesHeader).token;
-//   if (!token) return null;
+  const decoded = verifyToken(token);
+  if (!decoded) return null;
 
-//   try {
-//     const decoded = jwt.verify(token, process.env.JWT_SECRET!);
-//     return decoded as JwtPayloadCustom;
-//   } catch {
-//     return null;
-//   }
-// }
+  const user = await prisma.user.findUnique({
+    where: { id: parseInt(decoded.id) },
+  });
+
+  return user;
+}

@@ -34,6 +34,12 @@ export default function BlogChatModal({
         body: JSON.stringify({ question, postId }),
       });
 
+      if (res.status === 429) {
+        setAnswer("You have reached your daily limit of 3 questions.");
+        setLoading(false);
+        return;
+      }
+
       const data = await res.json();
       if (res.ok) {
         setAnswer(data.answer);

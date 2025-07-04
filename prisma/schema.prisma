@@ -23,6 +23,8 @@ model User {
   likedPosts     Post[]     @relation("PostLikes")
   likedComments  Comment[]  @relation("CommentLikes")
   comments       Comment[]
+  questions BlogQuestion[]
+
 }
 
 model Post {
@@ -46,6 +48,8 @@ model Post {
   homeSlider      HomeSlider[] @relation("PostHomeSlider")
   comments        Comment[]    @relation("PostComments")
   likedByUsers    User[]       @relation("PostLikes")
+  questions BlogQuestion[]
+
 }
 
 model Comment {
@@ -75,4 +79,15 @@ model HomeSlider {
   post     Post     @relation("PostHomeSlider", fields: [postId], references: [id])
   postId   Int
   addedAt  DateTime @default(now())
+}
+
+
+model BlogQuestion {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  post      Post     @relation(fields: [postId], references: [id])
+  postId    Int
+  question  String
+  createdAt DateTime @default(now())
 }

@@ -21,11 +21,11 @@ export default function Comments({ post }: Props) {
       {post.length === 0 ? (
         <p>There is no comment yet</p>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-4 text-white">
           {post.map((comment) => (
             <div
               key={comment.id}
-              className="border p-3 rounded-md text-white shadow-sm text-black flex flex-col gap-4"
+              className="border p-3 rounded-md  shadow-sm text-white flex flex-col gap-4"
             >
               <div className="flex flex-col gap-4 justify-center ">
                 <div className="flex items-center gap-4">

@@ -39,7 +39,7 @@ export default function LikeButton({
       onClick={toggleLike}
       disabled={loading}
       aria-label={liked ? "Unlike comment" : "Like comment"}
-      className="flex items-center gap-1 text-black hover:opacity-80 cursor-pointer"
+      className="flex items-center gap-1 text-white hover:opacity-80 cursor-pointer "
     >
       {liked ? <FaHeart size={20} /> : <IoIosHeartEmpty size={20} />}
       <span>{liked ? "Liked" : "Like"}</span>
