@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import TiptapEditor from "./components/TiptapEditor";
 
 type FormData = {
   title: string;
@@ -27,7 +28,8 @@ export default function NewPostPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [imagePreview, setImagePreview] = useState<string>("");
   const [categories, setCategories] = useState<Category[]>([]);
-  const { register, handleSubmit, reset } = useForm<FormData>();
+  const { register, handleSubmit, reset, setValue, watch } =
+    useForm<FormData>();
 
   useEffect(() => {
     fetch("/api/category")
@@ -112,18 +114,22 @@ export default function NewPostPage() {
         />
 
         {/* Content */}
-        <textarea
+        {/* <textarea
           {...register("content", { required: true, minLength: 10 })}
           placeholder="Content"
           className="w-full border p-2 min-h-48 rounded-lg"
+        /> */}
+        <TiptapEditor
+          value={watch("content") || ""}
+          onChange={(val) => setValue("content", val)}
         />
 
         {/* Optional Slug */}
-        <input
+        {/* <input
           {...register("slug")}
           placeholder="Custom slug (optional)"
           className="w-full border p-2 rounded-lg"
-        />
+        /> */}
 
         {/* Description */}
         <input

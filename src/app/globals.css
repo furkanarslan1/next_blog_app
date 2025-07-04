@@ -159,3 +159,44 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+/* Tiptap Editor stilleri */
+.tiptap-editor {
+  min-height: 200px;
+  width: 100%;
+  outline: none;
+  padding: 8px;
+  color: white;
+}
+
+/* Paragraflar boşken bile görünmeli */
+.tiptap-editor p {
+  min-height: 1.5rem;
+  line-height: 1.5rem;
+}
+
+/* Code block */
+.tiptap-editor pre {
+  background: #1e1e1e;
+  color: #f8f8f2;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+  font-family: monospace;
+}
+
+/* Resim */
+.tiptap-editor img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1rem auto;
+}
+
+.tiptap p.is-empty::before {
+  content: attr(data-placeholder);
+  color: #9ca3af; /* gray-400 */
+  float: left;
+  pointer-events: none;
+  height: 0;
+}

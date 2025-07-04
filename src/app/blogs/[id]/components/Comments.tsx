@@ -21,7 +21,7 @@ export default function Comments({ post }: Props) {
       {post.length === 0 ? (
         <p>There is no comment yet</p>
       ) : (
-        <div className="space-y-4 text-white">
+        <div className="space-y-4">
           {post.map((comment) => (
             <div
               key={comment.id}
