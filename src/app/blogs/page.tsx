@@ -1,47 +1,73 @@
+// app/blogs/page.tsx
+import { PaginationControls } from "@/components/pagination/pagination-controls";
 import Image from "next/image";
 import Link from "next/link";
+import { FaArrowAltCircleRight } from "react-icons/fa";
 
-export default async function BlogsPage() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/posts`, {
-    cache: "no-store",
-  });
+interface Post {
+  id: number;
+  title: string;
+  description: string;
+  imageUrl?: string;
+}
 
-  if (!res.ok) {
-    throw new Error("Error");
-  }
+export default async function BlogsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>;
+}) {
+  const { page } = await searchParams;
+  const currentPage = Number(page) || 1;
+  const limit = 6;
 
-  const posts = await res.json();
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SITE_URL}/api/posts?page=${currentPage}&limit=${limit}`,
+    { cache: "no-store" }
+  );
+
+  if (!res.ok) throw new Error("Error fetching posts");
+
+  const { posts, total }: { posts: Post[]; total: number } = await res.json();
+
+  const totalPages = Math.ceil(total / limit);
 
   return (
     <div className="p-4 space-y-4">
       <h1 className="text-2xl font-bold">Blogs</h1>
-      <div className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
-        {posts.map((post: any) => (
-          <Link key={post.id} href={`/blogs/${post.id}`}>
-            <article className="h-[400px] overflow-hidden text-sm md:text-xl border p-6 rounded-md transition-all duration-500 hover:shadow-[0_0_15px_2px_white] shadow-white flex flex-col items-center gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
+        {posts.map((post) => (
+          <div key={post.id}>
+            <article className="h-[400px] overflow-hidden text-sm md:text-xl border p-6 rounded-md transition-all duration-500 hover:shadow-[0_0_15px_2px_white] shadow-white flex flex-col  gap-4">
               <div className="relative h-[200px] w-full">
                 <Image
-                  src={post.image || "/blog.jpg"}
+                  src={post.imageUrl || "/blog.jpg"}
                   alt="blog image"
                   fill
                   className="object-cover object-center rounded-2xl"
                 />
               </div>
               <div>
-                <h2 className="text-xl font-semibold">{post.title}</h2>
-                <p>{post.description}</p>
+                <h2 className="text-xl font-semibold line-clamp-1">
+                  {post.title}
+                </h2>
+                <p className="line-clamp-1">{post.description}</p>
               </div>
-
               <Link
                 href={`/blogs/${post.id}`}
-                className="px-4 py-2 bg-white rounded-2xl text-black cursor-pointer hover:opacity-60 transition-all duration-300"
+                className="relative group overflow-hidden flex items-center gap-4 rounded-2xl px-4 py-2 w-48 cursor-pointer font-bold bg-white text-black transition-all duration-300"
               >
-                Detail
+                <span className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-800 ease-out z-0"></span>
+                <FaArrowAltCircleRight className="text-xl z-10 transition-all duration-300 group-hover:text-white" />
+                <p className="z-10 transition-all duration-300 group-hover:text-white">
+                  Detail
+                </p>
               </Link>
             </article>
-          </Link>
+          </div>
         ))}
       </div>
+
+      <PaginationControls currentPage={currentPage} totalPages={totalPages} />
     </div>
   );
 }

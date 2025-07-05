@@ -185,7 +185,11 @@ export default function NewPostPage() {
           {...register("categoryId")}
         >
           {categories &&
-            categories.map((cat) => <option value={cat.id}>{cat.name}</option>)}
+            categories.map((cat) => (
+              <option key={cat.id} value={cat.id}>
+                {cat.name}
+              </option>
+            ))}
         </select>
 
         {/* Submit */}
