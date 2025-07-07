@@ -26,7 +26,7 @@ export default function HomeBlog({ activeCategories }: Props) {
 
     fetch(`/api/posts?categoryId=${activeCategories}`)
       .then((res) => res.json())
-      .then((data) => setBlogs(data));
+      .then((data) => setBlogs(data.posts));
   }, [activeCategories]);
   // const blogs: Blog[] = await res.json();
   return (

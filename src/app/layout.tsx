@@ -51,7 +51,7 @@ export default function RootLayout({
         <header className="fixed w-full top-0 left-0 z-50 bg-transparent backdrop-blur-3xl  ">
           <Header />
         </header>
-        <main className="flex-1 pt-30">
+        <main className="flex-1 pt-30 max-w-7xl mx-auto px-4">
           <AppInit>{children}</AppInit>
         </main>
         <footer>

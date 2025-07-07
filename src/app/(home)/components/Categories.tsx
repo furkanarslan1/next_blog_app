@@ -31,6 +31,7 @@ export default function Categories() {
     <div className="md:grid grid-cols-2 gap-6 hidden ">
       {category.slice(0, 4).map((cat, index) => (
         <Link
+          key={cat.id}
           href={`/category/${cat.name}`}
           className={`bg-gradient-to-r ${gradientClasses[index]?.from}  to-${white} w-[200px] h-[200px] flex items-center justify-center font-bold rounded-md hover:${gradientClasses[index]?.from} hover:${gradientClasses[index]?.to} transition-colors duration-500`}
         >

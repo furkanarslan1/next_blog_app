@@ -75,9 +75,10 @@ import { prisma } from "@/lib/prisma";
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }): Promise<Metadata> {
-  const postId = Number(params.id);
+  const { id } = await params;
+  const postId = Number(id);
   return await generateBlogMetadata(postId);
 }
 
