@@ -55,7 +55,7 @@ export default function AdminSidebar() {
           </Link>
 
           <Link
-            href="/admin/posts/delete"
+            href="/admin/posts/comments"
             className="font-bold text-white  border-1 px-4 py-2 rounded-2xl hover:bg-white hover:text-black transition-all duration-300"
           >
             Comments

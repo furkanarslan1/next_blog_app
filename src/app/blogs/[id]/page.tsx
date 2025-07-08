@@ -142,7 +142,7 @@ export default async function BlogDetailPage({
   const isLoggedIn = !!currentUserId;
 
   return (
-    <div className="p-6 max-w-4xl mx-auto space-y-8 text-sm md:text-md lg:text-lg">
+    <div className="p-6 max-w-4xl mx-auto space-y-8 text-sm md:text-lg lg:text-lg">
       <h1 className="text-3xl font-bold border-b pb-4 text-center">
         {post.title}
       </h1>
@@ -153,6 +153,7 @@ export default async function BlogDetailPage({
             src={post.imageUrl}
             alt={post.title}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
             className="object-cover rounded-md"
           />
         </div>

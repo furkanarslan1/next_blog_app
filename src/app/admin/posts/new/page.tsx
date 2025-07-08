@@ -180,7 +180,7 @@ export default function NewPostPage() {
         />
 
         {/* Category */}
-        <select
+        {/* <select
           className="block bg-black border p-2 rounded-lg"
           {...register("categoryId")}
         >
@@ -190,6 +190,17 @@ export default function NewPostPage() {
                 {cat.name}
               </option>
             ))}
+        </select> */}
+        <select
+          className="block bg-black border p-2 rounded-lg"
+          {...register("categoryId", { required: true })}
+        >
+          <option value="">Choose category</option>
+          {categories.map((cat) => (
+            <option key={cat.id} value={cat.id}>
+              {cat.name}
+            </option>
+          ))}
         </select>
 
         {/* Submit */}

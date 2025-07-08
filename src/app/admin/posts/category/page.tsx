@@ -6,6 +6,7 @@ import { IoIosSave } from "react-icons/io";
 interface Category {
   id: number;
   name: string;
+  slug: string;
 }
 
 export default function Category_admin() {
@@ -37,14 +38,26 @@ export default function Category_admin() {
     setEditCategoryId(null);
   };
 
+  function slugify(text: string) {
+    return text
+      .toString()
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, "-") // boşlukları tire yap
+      .replace(/[^\w\-]+/g, "") // alfasayısal olmayanları çıkar
+      .replace(/\-\-+/g, "-"); // çift tireleri teke indir
+  }
+
   const handleAddCategory = async () => {
     if (!newCategoryName.trim()) return;
+
+    const slug = slugify(newCategoryName);
 
     try {
       const res = await fetch("/api/category", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: newCategoryName }),
+        body: JSON.stringify({ name: newCategoryName, slug }),
       });
       if (!res.ok) {
         throw new Error("unsuccesfull");

@@ -88,6 +88,7 @@ export default function RelatedPosts({ relatedPosts }: Props) {
                     src={related.imageUrl}
                     alt={related.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
                     className="object-cover rounded-md"
                   />
                 </div>

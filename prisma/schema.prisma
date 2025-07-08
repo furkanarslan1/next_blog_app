@@ -69,14 +69,16 @@ model Comment {
 model Category {
   id    Int     @id @default(autoincrement())
   name  String  @unique
-
+  slug  String  @unique
   posts Post[]  @relation("PostCategory")
 }
+
+
 
 model HomeSlider {
   id       Int      @id @default(autoincrement())
   order    Int      @unique
-  post     Post     @relation("PostHomeSlider", fields: [postId], references: [id])
+  post     Post     @relation("PostHomeSlider", fields: [postId], references: [id], onDelete: Cascade)
   postId   Int
   addedAt  DateTime @default(now())
 }

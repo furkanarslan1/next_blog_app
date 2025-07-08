@@ -13,14 +13,35 @@ export default function AdminDeletePage() {
   const [posts, setPosts] = useState<deletePost[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // useEffect(() => {
+  //   fetch("/api/posts")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setPosts(data);
+  //       setLoading(false);
+  //     })
+  //     .catch(() => setLoading(false));
+  // }, []);
   useEffect(() => {
-    fetch("/api/posts")
-      .then((res) => res.json())
-      .then((data) => {
-        setPosts(data);
+    async function fetchPosts() {
+      try {
+        const res = await fetch("/api/posts");
+        const data = await res.json();
+
+        if (!Array.isArray(data.posts)) {
+          console.error("Veri beklenen formatta değil:", data);
+          return;
+        }
+
+        setPosts(data.posts);
+      } catch (err) {
+        console.error("Postları çekerken hata:", err);
+      } finally {
         setLoading(false);
-      })
-      .catch(() => setLoading(false));
+      }
+    }
+
+    fetchPosts();
   }, []);
 
   async function handleDelete(id: number) {
