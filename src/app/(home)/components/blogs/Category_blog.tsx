@@ -8,6 +8,9 @@ import {
   IoIosArrowDroprightCircle,
   IoIosArrowDropleftCircle,
 } from "react-icons/io";
+import { FaArrowAltCircleRight } from "react-icons/fa";
+
+import Link from "next/link";
 
 interface Category {
   name: string;
@@ -115,6 +118,21 @@ export default function Category_blog() {
 
       <div>
         <HomeBlog activeCategories={activeCategories} />
+      </div>
+      <div>
+        <Link
+          href={`/categories/${activeCategories}`}
+          className="relative group overflow-hidden flex items-center gap-4 rounded-2xl px-4 py-2 w-full max-h-20 mt-5 cursor-pointer font-bold bg-white text-black transition-all duration-300"
+        >
+          {/* Kayan siyah arkaplan efekti */}
+          <span className="absolute inset-0 bg-gradient-to-r from-black to-black/40 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-800 ease-out z-0"></span>
+
+          {/* İçerik */}
+          <FaArrowAltCircleRight className="text-3xl z-10 transition-all duration-300 group-hover:text-white" />
+          <span className="z-10 md:text-xl transition-all duration-300 group-hover:text-white">
+            All Blogs
+          </span>
+        </Link>
       </div>
     </div>
   );

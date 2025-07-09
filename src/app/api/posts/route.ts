@@ -40,6 +40,7 @@ export async function GET(req: NextRequest) {
       where: categoryId ? { categoryId: Number(categoryId) } : {},
       skip,
       take: limit,
+      orderBy: { createdAt: "desc" },
     }),
     prisma.post.count({
       where: categoryId ? { categoryId: Number(categoryId) } : {},

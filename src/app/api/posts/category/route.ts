@@ -48,7 +48,7 @@ export async function GET(req: NextRequest) {
 
   const category = await prisma.category.findUnique({
     where: { slug },
-    select: { id: true },
+    select: { id: true, name: true, slug: true },
   });
 
   if (!category) {

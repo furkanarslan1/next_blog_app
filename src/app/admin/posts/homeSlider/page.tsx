@@ -18,7 +18,7 @@ export default function AdminHomeSlider() {
   useEffect(() => {
     fetch("/api/posts")
       .then((res) => res.json())
-      .then((data) => setPosts(data))
+      .then((data) => setPosts(data.posts))
       .catch((err) => console.error(err));
   }, []);
 
@@ -41,53 +41,54 @@ export default function AdminHomeSlider() {
       <h1 className="text-center font-extrabold text-2xl border-b-1 pb-6">
         Home Slider
       </h1>
-      <ul className="grid grid-col-1 md:grid-cols-3 lg:grid-cols-6 mt-8 p-4 gap-4">
-        {posts.map((post) => (
-          <li
-            key={post.id}
-            className="flex flex-col gap-5 border-1 rounded-4xl h-[200px] md:h-[400px] w-full p-8 cursor-pointer hover:shadow-white hover:shadow-2xl transition-all duration-500"
-          >
-            {post.imageUrl ? (
-              <div className="relative w-full h-full ">
-                <Image
-                  src={post.imageUrl}
-                  fill
-                  className="object-cover object-center rounded-2xl"
-                  alt={post.title}
-                />
+      <ul className="grid grid-col-1 md:grid-cols-3 lg:grid-cols-4 mt-8 p-4 gap-4">
+        {Array.isArray(posts) &&
+          posts.map((post) => (
+            <li
+              key={post.id}
+              className="flex flex-col gap-5 border-1 rounded-4xl h-[200px] md:h-[400px] w-full p-8 cursor-pointer hover:shadow-white hover:shadow-2xl transition-all duration-500"
+            >
+              {post.imageUrl ? (
+                <div className="relative w-full h-full ">
+                  <Image
+                    src={post.imageUrl}
+                    fill
+                    className="object-cover object-center rounded-2xl"
+                    alt={post.title}
+                  />
+                </div>
+              ) : (
+                <span>Resim yok</span>
+              )}
+              <span>{post.title}</span>
+              <div className="flex items-center gap-4">
+                <button
+                  className="bg-white cursor-pointer text-sm px-6 py-2 font-bold text-black rounded-2xl hover:opacity-80  transition-all duration-300"
+                  onClick={() =>
+                    addToHomeSlider(post.id, selecetedOrder[post.id] || 1)
+                  }
+                >
+                  Add
+                </button>
+                <select
+                  className="bg-black"
+                  value={selecetedOrder[post.id]}
+                  onChange={(e) =>
+                    setSelecetedOrder((prev) => ({
+                      ...prev,
+                      [post.id]: Number(e.target.value),
+                    }))
+                  }
+                >
+                  {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
+                    <option key={n} value={n}>
+                      {n}.Slide
+                    </option>
+                  ))}
+                </select>
               </div>
-            ) : (
-              <span>Resim yok</span>
-            )}
-            <span>{post.title}</span>
-            <div className="flex items-center gap-4">
-              <button
-                className="bg-white cursor-pointer text-sm px-6 py-2 font-bold text-black rounded-2xl hover:opacity-80  transition-all duration-300"
-                onClick={() =>
-                  addToHomeSlider(post.id, selecetedOrder[post.id] || 1)
-                }
-              >
-                Add
-              </button>
-              <select
-                className="bg-black"
-                value={selecetedOrder[post.id]}
-                onChange={(e) =>
-                  setSelecetedOrder((prev) => ({
-                    ...prev,
-                    [post.id]: Number(e.target.value),
-                  }))
-                }
-              >
-                {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
-                  <option key={n} value={n}>
-                    {n}.Slide
-                  </option>
-                ))}
-              </select>
-            </div>
-          </li>
-        ))}
+            </li>
+          ))}
       </ul>
     </div>
   );
