@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import TiptapEditor from "./components/TiptapEditor";
+import TagInput from "./components/TagInput";
 
 type FormData = {
   title: string;
@@ -139,21 +140,63 @@ export default function NewPostPage() {
         />
 
         {/* SEO Fields */}
-        <input
+        {/* <input
           {...register("tags")}
           placeholder="Tags (comma separated)"
           className="w-full border p-2 rounded-lg"
+        /> */}
+
+        <TagInput
+          value={
+            watch("tags")
+              ?.split(",")
+              .map((tag) => tag.trim())
+              .filter(Boolean) || []
+          }
+          onChange={(val) => setValue("tags", val.join(","))}
         />
-        <input
+        <p className="text-sm text-gray-400">
+          Type a word and press Enter to add it as a tag. Repeat for multiple
+          tags.
+        </p>
+
+        {/* <input
           {...register("keywords")}
           placeholder="Keywords (comma separated)"
           className="w-full border p-2 rounded-lg"
+        /> */}
+
+        <TagInput
+          value={
+            watch("keywords")
+              ?.split(",")
+              .map((kw) => kw.trim())
+              .filter(Boolean) || []
+          }
+          onChange={(val) => setValue("keywords", val.join(","))}
         />
-        <input
+        <p className="text-sm text-gray-400">
+          Type a word and press Enter to add it as a tag. Repeat for multiple
+          tags.
+        </p>
+
+        {/* <input
           {...register("metaDescription")}
           placeholder="Meta Description"
           className="w-full border p-2 rounded-lg"
+        /> */}
+        <textarea
+          {...register("metaDescription", { maxLength: 160 })}
+          placeholder="Meta description (max 160 characters)"
+          className="w-full border p-2 rounded-lg"
+          onChange={(e) => {
+            const val = e.target.value;
+            setValue("metaDescription", val.slice(0, 160));
+          }}
         />
+        <p className="text-sm text-gray-400">
+          {watch("metaDescription")?.length || 0}
+        </p>
 
         {/* Image */}
         <input
@@ -207,7 +250,7 @@ export default function NewPostPage() {
         <button
           type="submit"
           disabled={isLoading}
-          className="bg-white w-full hover:shadow-white hover:shadow-2xl text-black p-2 rounded transition-all disabled:bg-gray-400"
+          className="bg-white w-full font-bold cursor-pointer hover:bg-black hover:text-white border-1 hover:shadow-white hover:shadow-2xl text-black p-2 rounded transition-all disabled:bg-gray-400 mt-4 duration-300"
         >
           {isLoading ? "Loading..." : "Send"}
         </button>
