@@ -93,3 +93,10 @@ model BlogQuestion {
   question  String
   createdAt DateTime @default(now())
 }
+
+model About{
+  id         Int     @id @default(autoincrement())
+  aboutImage String
+  aboutTitle String
+  aboutText String
+}
