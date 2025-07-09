@@ -99,4 +99,5 @@ model About{
   aboutImage String
   aboutTitle String
   aboutText String
+  createdAt  DateTime @default(now())
 }
