@@ -2,17 +2,18 @@ import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
 interface Params {
-  params: { username: string };
+  params: Promise<{ username: string }>;
 }
 
-export async function GET(req: Request, { params }: Params) {
-  const { username } = await params;
+export async function GET(req: Request, context: Params) {
+  const { username } = await context.params;
 
   try {
     const user = await prisma.user.findUnique({
-      where: { username },
+      where: { username: username.toLowerCase() },
       select: { id: true },
     });
+    console.log("User found:", user);
 
     if (!user) {
       //   return NextResponse.json({ error: "User not  found" }, { status: 404 });
