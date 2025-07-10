@@ -4,6 +4,7 @@ import { prisma } from "./prisma";
 
 interface JwtPayloadCustom {
   id: string;
+  username?: string;
 }
 
 export async function getTokenFromCookies() {
