@@ -1,12 +1,12 @@
 import { prisma } from "@/lib/prisma";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 interface Params {
-  params: { commentId: string };
+  params: Promise<{ commentId: string }>;
 }
 
-export async function DELETE(req: Request, { params }: Params) {
-  const { commentId } = await params;
+export async function DELETE(req: Request, context: Params) {
+  const { commentId } = await context.params;
   const commentIdNum = Number(commentId);
 
   if (isNaN(commentIdNum)) {

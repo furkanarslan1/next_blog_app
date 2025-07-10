@@ -71,6 +71,7 @@ import BlogChatModal from "./components/BlogChatModal";
 import { Metadata } from "next";
 import { generateBlogMetadata } from "@/lib/seo/generateBlogMetadata";
 import { prisma } from "@/lib/prisma";
+import DoComment from "./components/DoComment";
 
 export async function generateMetadata({
   params,
@@ -207,6 +208,9 @@ export default async function BlogDetailPage({
 
       <div className="mt-8">
         <h2 className="text-xl font-semibold border-b pb-2 mb-4">Comments</h2>
+        <div>
+          <DoComment postId={post.id} />
+        </div>
 
         <Comments post={commentsWithLikedFlag} />
       </div>
