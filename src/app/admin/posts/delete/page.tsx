@@ -75,6 +75,7 @@ export default function AdminDeletePage() {
                 <Image
                   src={post.imageUrl}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover object-center rounded-2xl"
                   alt={post.title}
                 />

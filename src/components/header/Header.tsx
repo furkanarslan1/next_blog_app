@@ -15,6 +15,16 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
+} from "@/components/ui/navigation-menu";
 
 import { HiMenuAlt1 } from "react-icons/hi";
 import { useauthStore } from "@/lib/stores/authStore";
@@ -29,6 +39,33 @@ export default function Header() {
     clearUser();
     router.push("/login");
   };
+
+  const smLinks = [
+    {
+      href: "/",
+      label: "Home",
+    },
+    {
+      href: "/about",
+      label: "About",
+    },
+    {
+      href: "/contact",
+      label: "Contact",
+    },
+    {
+      href: "/blogs",
+      label: "Blogs",
+    },
+    {
+      href: "/categories",
+      label: "Categories",
+    },
+    {
+      href: ` /profile/${user?.username}`,
+      label: "Categories",
+    },
+  ];
   return (
     <nav className="flex items-center justify-between gap-4 p-4 lg:p-8 ">
       <div className="flex items-center gap-16">
@@ -40,15 +77,27 @@ export default function Header() {
 
         <div className="md:flex items-center  gap-4 hidden">
           {headerLinks.map((link) => (
+            // <Link
+            //   key={link.href}
+            //   href={link.href}
+            //   className={clsx(
+            //     pathname === link.href &&
+            //       "bg-white  text-black px-4 py-2 rounded-md"
+            //   )}
+            // >
+            //   {link.label}
+            // </Link>
             <Link
               key={link.href}
               href={link.href}
               className={clsx(
+                "relative group px-2 py-1",
                 pathname === link.href &&
                   "bg-white  text-black px-4 py-2 rounded-md"
               )}
             >
               {link.label}
+              <span className="absolute left-1/2 bottom-0 h-[2px] w-0 bg-white group-hover:w-full group-hover:left-0 transition-all duration-500"></span>
             </Link>
           ))}
         </div>
@@ -65,27 +114,62 @@ export default function Header() {
             </Link>
           ))}
         </div>
-        <div>
-          {user ? (
-            <div>
-              <p>Welcome, {user.firstName}</p>
-              <button onClick={handleLogout}>Logout</button>
-            </div>
-          ) : (
-            <Link
-              className="bg-white/80 text-black px-4 py-2 rounded-md hover:bg-white/60 transition-all duration-500"
-              href="/login"
-            >
-              Login
-            </Link>
-          )}
-        </div>
+        <NavigationMenu>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger className="bg-black border-1 rounded-2xl">
+                {" "}
+                <div>
+                  {user ? (
+                    <div className="">
+                      <p> {user.firstName}</p>
+                    </div>
+                  ) : (
+                    <Link
+                      className="bg-white/80 text-black px-4 py-2 rounded-md hover:bg-white/60 transition-all duration-500"
+                      href="/login"
+                    >
+                      Login
+                    </Link>
+                  )}
+                </div>
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <NavigationMenuLink className="cursor-pointer font-bold hover:bg-black hover:text-white">
+                  <Link href={`/profile/${user?.username}/user-options`}>
+                    Options
+                  </Link>
+                </NavigationMenuLink>
+                <NavigationMenuLink className="cursor-pointer font-bold">
+                  <Link href={`/profile/${user?.username}/user-comments`}>
+                    Comments
+                  </Link>
+                </NavigationMenuLink>
+                <NavigationMenuLink className="cursor-pointer font-bold">
+                  <Link href={`/profile/${user?.username}/user-likes`}>
+                    Like
+                  </Link>
+                </NavigationMenuLink>
+                <NavigationMenuLink>
+                  {" "}
+                  <button
+                    className="cursor-pointer font-bold"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </button>
+                </NavigationMenuLink>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+
         {/* <Link
-          href="/login"
-          className="bg-white/80 text-black px-4 py-2 rounded-md hover:bg-white/60 transition-all duration-500"
-        >
-          Login
-        </Link> */}
+      href="/login"
+      className="bg-white/80 text-black px-4 py-2 rounded-md hover:bg-white/60 transition-all duration-500"
+    >
+      Login
+    </Link> */}
       </div>
 
       <div className=" md:hidden ">
@@ -99,7 +183,7 @@ export default function Header() {
                 Menu
               </SheetTitle>
               <SheetDescription className="flex flex-col items-start mt-8 text-white  gap-4">
-                {headerLinks.map((link) => (
+                {smLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}

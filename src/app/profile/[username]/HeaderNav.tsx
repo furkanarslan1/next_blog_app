@@ -28,7 +28,7 @@ export default function HeaderNav({ username }: Props) {
     await fetch("/api/auth/logout", { method: "POST" });
     clearUser();
     router.push("/login");
-    setOpen(false); // ✅ menüyü kapat
+    setOpen(false);
   };
 
   const navItems = [
@@ -54,7 +54,7 @@ export default function HeaderNav({ username }: Props) {
     <header className="flex flex-col items-start gap-4 mb-2 border-r-1 pr-4 text-sm md:text-lg">
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger onClick={() => setOpen(true)}>
-          <p className="font-bold border-1  p-1 rounded-md bg-white text-black">
+          <p className="font-bold border-1  p-1 rounded-md bg-white text-black cursor-pointer">
             Menu
           </p>
         </SheetTrigger>

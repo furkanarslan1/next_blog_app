@@ -16,6 +16,14 @@ export const headerLinks: HeaderLink[] = [
     href: "/contact",
     label: "Contact",
   },
+  {
+    href: "/blogs",
+    label: "Blogs",
+  },
+  {
+    href: "/categories",
+    label: "Categories",
+  },
 ];
 
 export const socialLinks: HeaderLink[] = [

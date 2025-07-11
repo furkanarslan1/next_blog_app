@@ -25,6 +25,7 @@ export default function HomeBlogitem({
             src={imageUrl}
             alt="blog image"
             className="object-contain roundded-xl"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>
         <div className="space-y-4 text-sm">

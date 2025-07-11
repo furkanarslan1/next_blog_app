@@ -44,20 +44,24 @@ export default function Swipper() {
                 href={`/blogs/${post.id}`}
                 className="relative h-screen  w-full overflow-hidden"
               >
-                <div className="w-full h-120 md:h-140">
+                <div className="relative  w-full h-120 md:h-140">
                   {post.imageUrl ? (
                     <Image
                       src={post.imageUrl}
                       alt="Blog image"
                       fill
-                      className="object-contain object-center   rounded-md"
+                      priority={true}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover object-center   rounded-md"
                     />
                   ) : (
                     <Image
                       src="/blog.jpg"
                       alt="Blog image"
                       fill
-                      className="object-contain object-center   rounded-md"
+                      priority={true}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover object-center   rounded-md"
                     />
                   )}
 

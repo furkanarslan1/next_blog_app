@@ -46,6 +46,7 @@ export default async function CategoryPage({
                     src={post.imageUrl || "/blog.jpg"}
                     alt="blog image"
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover object-center rounded-2xl"
                   />
                 </div>
