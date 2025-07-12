@@ -132,10 +132,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 export async function GET(
-  req: NextRequest,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  context: { params: { id: string } }
 ) {
-  const id = Number(params.id);
+  const id = Number(context.params.id);
 
   if (!id || isNaN(id)) {
     return NextResponse.json({ error: "Invalid post ID" }, { status: 400 });
@@ -153,10 +153,10 @@ export async function GET(
 }
 
 export async function DELETE(
-  req: NextRequest,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  context: { params: { id: string } }
 ) {
-  const numericId = Number(params.id);
+  const numericId = Number(context.params.id);
 
   if (!numericId || isNaN(numericId)) {
     return NextResponse.json({ error: "Invalid post ID" }, { status: 400 });
