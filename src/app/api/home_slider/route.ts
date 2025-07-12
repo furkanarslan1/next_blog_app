@@ -1,13 +1,5 @@
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
-interface SliderWithPost {
-  post: {
-    id: number;
-    title: string;
-    description: string;
-    imageUrl: string;
-  };
-}
 
 export async function GET() {
   try {

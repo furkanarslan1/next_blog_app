@@ -66,8 +66,12 @@ export default function Category_admin() {
       const createdCategory = await res.json();
       setCategory((prev) => [...prev, createdCategory]);
       setNewCategoryName("");
-    } catch (error: any) {
-      console.log(error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.log(error.message);
+      } else {
+        console.log("Unexpected error", error);
+      }
     }
   };
 
@@ -95,7 +99,7 @@ export default function Category_admin() {
 
         <ul className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4  ">
           {category &&
-            category.map((cat: Category) => (
+            category.map((cat) => (
               <li
                 className="flex flex-col gap-6 border-1 rounded-2xl p-6 shadow-white shadow-md "
                 key={cat.id}
