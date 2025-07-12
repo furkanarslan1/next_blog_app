@@ -240,6 +240,16 @@ import { prisma } from "@/lib/prisma";
 import DoComment from "./components/DoComment";
 import PostLike from "./components/PostLike";
 
+type CommentWithUserAndLikes = {
+  id: number;
+  content: string;
+  user: {
+    username: string | null;
+    avatarUrl: string | null;
+  };
+  likedByUsers: { id: number }[];
+};
+
 export async function generateMetadata({
   params,
 }: {
@@ -322,13 +332,17 @@ export default async function BlogDetailPage({
     take: 4,
   });
 
-  const commentsWithLikedFlag = post.comments.map((comment) => ({
-    id: comment.id,
-    content: comment.content,
-    user: comment.user,
-    likedComments: comment.likedByUsers.length > 0,
-  }));
-
+  const commentsWithLikedFlag = post.comments.map(
+    (comment: CommentWithUserAndLikes) => ({
+      id: comment.id,
+      content: comment.content,
+      user: {
+        username: comment.user.username ?? "",
+        avatarUrl: comment.user.avatarUrl,
+      },
+      likedComments: comment.likedByUsers.length > 0,
+    })
+  );
   const isLoggedIn = !!currentUserId;
 
   // Kullanıcının bu postu beğenip beğenmediğini kontrol et
@@ -370,7 +384,7 @@ export default async function BlogDetailPage({
 
       {post.tags && (
         <div className="flex flex-wrap gap-2 mt-2">
-          {post.tags.split(",").map((tag) => (
+          {post.tags.split(",").map((tag: string) => (
             <span
               key={tag.trim()}
               className="bg-white text-black text-sm px-3 py-1 rounded-full"

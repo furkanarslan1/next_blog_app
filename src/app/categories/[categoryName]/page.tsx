@@ -16,7 +16,7 @@ export default async function CategoryPage({
   searchParams,
 }: {
   params: Promise<{ categoryName: string }>;
-  searchParams: { page?: string };
+  searchParams: Promise<{ page?: string }>;
 }) {
   const { categoryName } = await params;
   const searchParamsResolved = await searchParams;

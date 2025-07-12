@@ -4,6 +4,12 @@ import React from "react";
 import { headerLinks, socialLinks } from "../header/headerLinks";
 import { IoMail } from "react-icons/io5";
 
+interface catType {
+  id: number;
+  slug: string;
+  name: string;
+}
+
 export default async function Footer() {
   const categories = await prisma.category.findMany({
     select: { id: true, name: true, slug: true },
@@ -16,8 +22,7 @@ export default async function Footer() {
         <div>
           <Link href="/">
             <h1 className="border-b-2 pb-1">
-              <span className="font-extrabold text-2xl pr-2">Next</span>{" "}
-              Blog{" "}
+              <span className="font-extrabold text-2xl pr-2">Next</span> Blog{" "}
             </h1>
           </Link>
         </div>
@@ -39,7 +44,7 @@ export default async function Footer() {
           <h4 className="border-b-2 pb-2  font-extrabold">Categories</h4>
           <ul className="flex flex-col items-center gap-4">
             {categories &&
-              categories.map((cat) => (
+              categories.map((cat: catType) => (
                 <li key={cat.id}>
                   <Link
                     className=" relative group px-2 py-1"

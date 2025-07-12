@@ -127,42 +127,49 @@
 //     );
 //   }
 // }
-
-// app/api/posts/[id]/route.ts
-import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
   _req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
-  const id = parseInt(params.id, 10);
+  const { id: idStr } = await context.params;
+  const id = Number(idStr);
 
-  if (Number.isNaN(id) || id <= 0) {
-    return NextResponse.json({ error: "Invalid post ID" }, { status: 400 });
-  }
-
-  const post = await prisma.post.findUnique({ where: { id } });
-
-  if (!post) {
-    return NextResponse.json({ error: "Post not found" }, { status: 404 });
-  }
-
-  return NextResponse.json(post, { status: 200 });
-}
-
-export async function DELETE(
-  _req: NextRequest,
-  { params }: { params: { id: string } }
-) {
-  const id = parseInt(params.id, 10);
-
-  if (Number.isNaN(id) || id <= 0) {
+  if (isNaN(id) || id <= 0) {
     return NextResponse.json({ error: "Invalid post ID" }, { status: 400 });
   }
 
   try {
-    // Tüm tabloları tek transaction içinde sil
+    const post = await prisma.post.findUnique({ where: { id } });
+
+    if (!post) {
+      return NextResponse.json({ error: "Post not found" }, { status: 404 });
+    }
+
+    return NextResponse.json(post, { status: 200 });
+  } catch (err) {
+    console.error("GET /api/posts/:id error:", err);
+    return NextResponse.json(
+      { error: "Failed to retrieve post" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(
+  _req: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
+  const { id: idStr } = await context.params;
+  const id = Number(idStr);
+
+  if (isNaN(id) || id <= 0) {
+    return NextResponse.json({ error: "Invalid post ID" }, { status: 400 });
+  }
+
+  try {
     await prisma.$transaction([
       prisma.homeSlider.deleteMany({ where: { postId: id } }),
       prisma.comment.deleteMany({ where: { postId: id } }),
@@ -170,13 +177,13 @@ export async function DELETE(
       prisma.post.delete({ where: { id } }),
     ]);
 
-    // 204  No Content → başarılı, gövde yok
-    return NextResponse.json(null, { status: 204 });
+    return new NextResponse(null, { status: 204 });
   } catch (err) {
-    console.error("DELETE /api/posts/:id", err);
+    console.error("DELETE /api/posts/:id error:", err);
     return NextResponse.json(
       { error: "Failed to delete post" },
       { status: 500 }
     );
   }
 }
+

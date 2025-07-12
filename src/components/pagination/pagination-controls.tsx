@@ -5,9 +5,11 @@ import Link from "next/link";
 export function PaginationControls({
   currentPage,
   totalPages,
+   categoryId,
 }: {
   currentPage: number;
   totalPages: number;
+    categoryId?: string;
 }) {
   // create a array for contain page numbers
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
