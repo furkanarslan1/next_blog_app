@@ -128,14 +128,15 @@
 //   }
 // }
 
+// app/api/posts/[id]/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 export async function GET(
-  request: NextRequest,
-  context: { params: { id: string } }
+  req: NextRequest,
+  { params }: { params: Record<string, string> }
 ) {
-  const id = Number(context.params.id);
+  const id = Number(params.id);
 
   if (!id || isNaN(id)) {
     return NextResponse.json({ error: "Invalid post ID" }, { status: 400 });
@@ -153,31 +154,20 @@ export async function GET(
 }
 
 export async function DELETE(
-  request: NextRequest,
-  context: { params: { id: string } }
+  req: NextRequest,
+  { params }: { params: Record<string, string> }
 ) {
-  const numericId = Number(context.params.id);
+  const numericId = Number(params.id);
 
   if (!numericId || isNaN(numericId)) {
     return NextResponse.json({ error: "Invalid post ID" }, { status: 400 });
   }
 
   try {
-    await prisma.homeSlider.deleteMany({
-      where: { postId: numericId },
-    });
-
-    await prisma.comment.deleteMany({
-      where: { postId: numericId },
-    });
-
-    await prisma.blogQuestion.deleteMany({
-      where: { postId: numericId },
-    });
-
-    await prisma.post.delete({
-      where: { id: numericId },
-    });
+    await prisma.homeSlider.deleteMany({ where: { postId: numericId } });
+    await prisma.comment.deleteMany({ where: { postId: numericId } });
+    await prisma.blogQuestion.deleteMany({ where: { postId: numericId } });
+    await prisma.post.delete({ where: { id: numericId } });
 
     return NextResponse.json({ message: "Post deleted successfully" });
   } catch (error) {
