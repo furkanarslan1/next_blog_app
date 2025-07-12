@@ -69,6 +69,10 @@ export default function Category_blog() {
         }
       })
       .catch((error) => console.log(error.message));
+    return () => {
+      scrollContainer.removeEventListener("scroll", checkScroll);
+      window.removeEventListener("resize", checkScroll);
+    };
   }, []);
 
   useEffect(() => {
@@ -78,7 +82,7 @@ export default function Category_blog() {
   }, [categories]);
 
   return (
-    <div>
+    <div className="">
       <div className="relative">
         <ul
           ref={scrollRef}
@@ -88,7 +92,7 @@ export default function Category_blog() {
             categories.map((cat) => (
               <li
                 className={clsx(
-                  `px-4 py-2 font-bold rounded-2xl cursor-pointer whitespace-nowrap `,
+                  `md:px-4 md:py-2 p-1 font-bold rounded-2xl cursor-pointer whitespace-nowrap `,
                   activeCategories === cat.id && "bg-white text-black "
                 )}
                 key={cat.id}

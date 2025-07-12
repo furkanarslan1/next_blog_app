@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import TiptapEditor from "./components/TiptapEditor";
 import TagInput from "./components/TagInput";
+import Image from "next/image";
 
 type FormData = {
   title: string;
@@ -86,8 +87,8 @@ export default function NewPostPage() {
 
       reset();
       router.push("/blogs");
-    } catch (error: any) {
-      alert(error.message);
+    } catch (error) {
+      console.log(error);
       setIsLoading(false);
     }
   }
@@ -207,10 +208,12 @@ export default function NewPostPage() {
           onChange={handleFileChange}
         />
         {imagePreview && (
-          <img
+          <Image
             src={imagePreview}
             alt="Preview"
-            className="w-full h-auto mt-2 rounded"
+            height={200}
+            width={200}
+            className="w-full object-cover h-auto mt-2 rounded"
           />
         )}
 

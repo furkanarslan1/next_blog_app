@@ -140,8 +140,12 @@ export default function AdminHomeSlider() {
       if (!res.ok) throw new Error("Unsuccessful");
 
       alert(`Post ${postId} added to slider at order ${order}`);
-    } catch (err: any) {
-      alert(err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        alert(err.message);
+      } else {
+        alert("Bir hata oluştu");
+      }
     }
   };
 

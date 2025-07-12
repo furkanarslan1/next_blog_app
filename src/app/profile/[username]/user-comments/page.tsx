@@ -154,7 +154,7 @@ export default function UserComments() {
         <div>There is no comment</div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {comments.map((comment: any) => (
+          {comments.map((comment: CommentType) => (
             <div
               key={comment.id}
               className="border-1 rounded-2xl p-4 flex items-center justify-between gap-4"

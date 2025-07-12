@@ -4,6 +4,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
 import { FaArrowAltCircleRight } from "react-icons/fa";
+interface Post {
+  id: number;
+  title: string;
+  description: string;
+  imageUrl: string;
+}
 
 export default async function CategoryPage({
   params,
@@ -35,10 +41,10 @@ export default async function CategoryPage({
       <h1 className="text-3xl font-bold mb-6">{categoryName} Category</h1>
 
       {posts.length === 0 ? (
-        <p>There isn't any blog yet in this category.</p>
+        <p>No blogs available in this category yet.</p>
       ) : (
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
-          {posts.map((post: any) => (
+          {posts.map((post: Post) => (
             <div key={post.id}>
               <article className="min-h-[300px] md:min-h-[350px] w-ful overflow-hidden text-sm md:text-xl border p-6 rounded-2xl transition-all duration-500 hover:shadow-[0_0_15px_2px_white] shadow-white flex flex-col  gap-4 lg:gap-8">
                 <div className=" relative aspect-video w-full">

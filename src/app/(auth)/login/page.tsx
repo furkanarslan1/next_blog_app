@@ -50,6 +50,7 @@ export default function Login() {
       useauthStore.getState().setUser(result.user);
       router.push("/");
     } catch (err) {
+      console.log(err);
       setErrorMsg("unsuccesfull");
     }
   };

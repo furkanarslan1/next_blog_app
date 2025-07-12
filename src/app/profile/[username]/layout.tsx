@@ -1,5 +1,3 @@
-import clsx from "clsx";
-import Link from "next/link";
 import React from "react";
 import HeaderNav from "./HeaderNav";
 

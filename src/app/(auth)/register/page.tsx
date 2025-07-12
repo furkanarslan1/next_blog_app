@@ -7,11 +7,11 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 const registerSchema = z.object({
-  firstName: z.string().min(2),
-  lastName: z.string().min(2),
-  username: z.string().min(3),
-  email: z.string().email(),
-  password: z.string().min(6),
+  firstName: z.string().min(2, "First name must be at least 2 characters"),
+  lastName: z.string().min(2, "Last name must be at least 2 characters"),
+  username: z.string().min(3, "Username must be at least 3 characters"),
+  email: z.string().email("Please enter a valid email"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
 type RegisterFormData = z.infer<typeof registerSchema>;
@@ -43,12 +43,18 @@ export default function Register() {
       });
 
       const result = await res.json();
+      if (!res.ok) {
+        setMessage(result?.error || "Something went wrong");
+        return;
+      }
 
       if (res.ok) {
-        setMessage("Registration succesfull");
+        setMessage("Registration successful");
+        setTimeout(() => router.push("/login"), 1500);
       }
     } catch (err) {
       setMessage("Something went wrong");
+      console.log("Register Error", err);
     }
   };
   return (
@@ -62,7 +68,13 @@ export default function Register() {
               <input
                 {...register(field as keyof RegisterFormData)}
                 className="border w-full p-2 rounded-xl"
-                type={field === "password" ? "password" : "text"}
+                type={
+                  field === "password"
+                    ? "password"
+                    : field === "email"
+                      ? "email"
+                      : "text"
+                }
               />
               {errors[field as keyof RegisterFormData] && (
                 <p className="text-sm text-red-500">

@@ -23,11 +23,12 @@ export function verifyToken(token: string): JwtPayloadCustom | null {
     ) as JwtPayloadCustom;
     return decoded;
   } catch (err) {
+    console.log(err);
     return null;
   }
 }
 
-export async function getUserFromToken(req: Request) {
+export async function getUserFromToken() {
   const token = await getTokenFromCookies();
   if (!token) return null;
 

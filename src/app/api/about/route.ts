@@ -69,6 +69,7 @@ export async function GET() {
 
     return new Response(JSON.stringify(about), { status: 200 });
   } catch (error) {
+    console.log(error);
     return new Response("Hata oluştu", { status: 500 });
   }
 }

@@ -18,12 +18,10 @@ import {
 import {
   NavigationMenu,
   NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
 
 import { HiMenuAlt1 } from "react-icons/hi";
@@ -140,12 +138,12 @@ export default function Header() {
                     Options
                   </Link>
                 </NavigationMenuLink>
-                <NavigationMenuLink className="cursor-pointer font-bold">
+                <NavigationMenuLink className="cursor-pointer font-bold hover:bg-black hover:text-white">
                   <Link href={`/profile/${user?.username}/user-comments`}>
                     Comments
                   </Link>
                 </NavigationMenuLink>
-                <NavigationMenuLink className="cursor-pointer font-bold">
+                <NavigationMenuLink className="cursor-pointer font-bold hover:bg-black hover:text-white">
                   <Link href={`/profile/${user?.username}/user-likes`}>
                     Like
                   </Link>
@@ -153,7 +151,7 @@ export default function Header() {
                 <NavigationMenuLink>
                   {" "}
                   <button
-                    className="cursor-pointer font-bold"
+                    className="cursor-pointer font-bold hover:bg-black hover:text-white p-2 rounded-md"
                     onClick={handleLogout}
                   >
                     Logout

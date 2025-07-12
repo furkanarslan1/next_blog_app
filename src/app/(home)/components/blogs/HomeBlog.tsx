@@ -2,8 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import HomeBlogitem from "./HomeBlogitem";
-import Link from "next/link";
-import { FaArrowAltCircleRight } from "react-icons/fa";
 
 interface Blog {
   id: number;

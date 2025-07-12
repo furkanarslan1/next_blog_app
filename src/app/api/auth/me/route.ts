@@ -2,10 +2,6 @@ import { getTokenFromCookies, verifyToken } from "@/lib/aut";
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
-interface JwtPayloadCustom {
-  id: string;
-}
-
 export async function GET() {
   const token = await getTokenFromCookies();
 
