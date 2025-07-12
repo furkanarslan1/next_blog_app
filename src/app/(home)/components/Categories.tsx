@@ -28,7 +28,7 @@ export default function Categories() {
   }, []);
 
   return (
-    <div className="md:grid grid-cols-2 gap-6 hidden ">
+    <div className="md:grid grid-cols-2 gap-6 hidden">
       {category.slice(0, 4).map((cat, index) => (
         <Link
           key={cat.id}

@@ -46,12 +46,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased  flex flex-col min-h-screen bg-black text-white overflow-x-hidden `}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased   bg-black text-white overflow-x-hidden `}
       >
         <header className="fixed w-full top-0 left-0 z-50 bg-transparent backdrop-blur-3xl  ">
           <Header />
         </header>
-        <main className="flex-1 pt-30 max-w-7xl mx-auto px-4">
+        <main className="flex-1 pt-20 md:pt-32 px-2 sm:px-4 max-w-7xl mx-auto">
           <AppInit>{children}</AppInit>
         </main>
         <footer>

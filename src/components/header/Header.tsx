@@ -3,7 +3,7 @@
 import React from "react";
 import { headerLinks, socialLinks } from "./headerLinks";
 import Link from "next/link";
-
+import { FaPowerOff } from "react-icons/fa";
 import { usePathname, useRouter } from "next/navigation";
 import clsx from "clsx";
 
@@ -60,7 +60,7 @@ export default function Header() {
       label: "Categories",
     },
     {
-      href: ` /profile/${user?.username}`,
+      href: `/profile/${user?.username}`,
       label: "Categories",
     },
   ];
@@ -106,7 +106,7 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="hover:opacity-75 transition-all duration-500-"
+              className="hover:opacity-75 transition-all duration-500"
             >
               {link.icon}
             </Link>
@@ -133,28 +133,37 @@ export default function Header() {
                 </div>
               </NavigationMenuTrigger>
               <NavigationMenuContent>
-                <NavigationMenuLink className="cursor-pointer font-bold hover:bg-black hover:text-white">
-                  <Link href={`/profile/${user?.username}/user-options`}>
+                <NavigationMenuLink>
+                  <Link
+                    className="cursor-pointer font-bold p-2 rounded-md hover:bg-black hover:text-white"
+                    href={`/profile/${user?.username}/user-options`}
+                  >
                     Options
                   </Link>
                 </NavigationMenuLink>
-                <NavigationMenuLink className="cursor-pointer font-bold hover:bg-black hover:text-white">
-                  <Link href={`/profile/${user?.username}/user-comments`}>
+                <NavigationMenuLink>
+                  <Link
+                    className="cursor-pointer font-bold p-2 rounded-md hover:bg-black hover:text-white"
+                    href={`/profile/${user?.username}/user-comments`}
+                  >
                     Comments
                   </Link>
                 </NavigationMenuLink>
-                <NavigationMenuLink className="cursor-pointer font-bold hover:bg-black hover:text-white">
-                  <Link href={`/profile/${user?.username}/user-likes`}>
+                <NavigationMenuLink>
+                  <Link
+                    className="cursor-pointer font-bold p-2 rounded-md hover:bg-black hover:text-white"
+                    href={`/profile/${user?.username}/user-likes`}
+                  >
                     Like
                   </Link>
                 </NavigationMenuLink>
                 <NavigationMenuLink>
                   {" "}
                   <button
-                    className="cursor-pointer font-bold hover:bg-black hover:text-white p-2 rounded-md"
+                    className="cursor-pointer font-bold  hover:bg-black hover:text-white p-2 rounded-md "
                     onClick={handleLogout}
                   >
-                    Logout
+                    <FaPowerOff className="hover:text-white " />
                   </button>
                 </NavigationMenuLink>
               </NavigationMenuContent>

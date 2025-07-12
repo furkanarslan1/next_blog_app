@@ -133,45 +133,47 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 export async function GET(
-  req: NextRequest,
-  { params }: { params: Record<string, string> }
+  _req: NextRequest,
+  { params }: { params: { id: string } }
 ) {
-  const id = Number(params.id);
+  const id = parseInt(params.id, 10);
 
-  if (!id || isNaN(id)) {
+  if (Number.isNaN(id) || id <= 0) {
     return NextResponse.json({ error: "Invalid post ID" }, { status: 400 });
   }
 
-  const post = await prisma.post.findUnique({
-    where: { id },
-  });
+  const post = await prisma.post.findUnique({ where: { id } });
 
   if (!post) {
     return NextResponse.json({ error: "Post not found" }, { status: 404 });
   }
 
-  return NextResponse.json(post);
+  return NextResponse.json(post, { status: 200 });
 }
 
 export async function DELETE(
-  req: NextRequest,
-  { params }: { params: Record<string, string> }
+  _req: NextRequest,
+  { params }: { params: { id: string } }
 ) {
-  const numericId = Number(params.id);
+  const id = parseInt(params.id, 10);
 
-  if (!numericId || isNaN(numericId)) {
+  if (Number.isNaN(id) || id <= 0) {
     return NextResponse.json({ error: "Invalid post ID" }, { status: 400 });
   }
 
   try {
-    await prisma.homeSlider.deleteMany({ where: { postId: numericId } });
-    await prisma.comment.deleteMany({ where: { postId: numericId } });
-    await prisma.blogQuestion.deleteMany({ where: { postId: numericId } });
-    await prisma.post.delete({ where: { id: numericId } });
+    // Tüm tabloları tek transaction içinde sil
+    await prisma.$transaction([
+      prisma.homeSlider.deleteMany({ where: { postId: id } }),
+      prisma.comment.deleteMany({ where: { postId: id } }),
+      prisma.blogQuestion.deleteMany({ where: { postId: id } }),
+      prisma.post.delete({ where: { id } }),
+    ]);
 
-    return NextResponse.json({ message: "Post deleted successfully" });
-  } catch (error) {
-    console.error("Delete post error:", error);
+    // 204  No Content → başarılı, gövde yok
+    return NextResponse.json(null, { status: 204 });
+  } catch (err) {
+    console.error("DELETE /api/posts/:id", err);
     return NextResponse.json(
       { error: "Failed to delete post" },
       { status: 500 }

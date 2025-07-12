@@ -128,9 +128,9 @@ export default function Swipper() {
             <SwiperSlide key={post.id} className="relative">
               <Link
                 href={`/blogs/${post.id}`}
-                className="relative block h-[90vh] w-full overflow-hidden"
+                className="relative block w-full h-[70vh] sm:h-[60vh] md:h-[80vh] overflow-hidden rounded-md"
               >
-                <div className="relative w-full h-full overflow-hidden">
+                <div className="relative w-full h-full max-h-[80vh]">
                   <Image
                     src={post.imageUrl || "/blog.jpg"}
                     alt="Blog image"
