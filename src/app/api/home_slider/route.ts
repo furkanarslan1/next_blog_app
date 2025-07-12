@@ -1,5 +1,13 @@
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
+interface SliderWithPost {
+  post: {
+    id: number;
+    title: string;
+    description: string;
+    imageUrl: string;
+  };
+}
 
 export async function GET() {
   try {
@@ -16,8 +24,14 @@ export async function GET() {
         imageUrl: slider.post.imageUrl,
       }))
     );
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+    return NextResponse.json(
+      { error: "An unknown error occurred" },
+      { status: 500 }
+    );
   }
 }
 

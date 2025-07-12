@@ -21,7 +21,7 @@ export default function CategoryList({
   selectedCategoryId,
 }: CategoryListProps) {
   const [categories, setCategories] = useState<Category[]>([]);
-  const [activeCategories, setActiveCategories] = useState<number | null>(null);
+  // const [activeCategories, setActiveCategories] = useState<number | null>(null);
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -43,7 +43,7 @@ export default function CategoryList({
       .then((data) => {
         setCategories(data);
         if (data.length > 0) {
-          setActiveCategories(data[0].id);
+          // setActiveCategories(data[0].id);
         }
       })
       .catch((error) => console.log(error.message));

@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 interface Params {
   params: Promise<{ commentId: string }>;
@@ -20,6 +20,7 @@ export async function DELETE(req: Request, context: Params) {
 
     return NextResponse.json({ success: true, deleted });
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { error: "Comment not found or cannot delete" },
       { status: 500 }

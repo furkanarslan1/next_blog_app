@@ -59,7 +59,7 @@ export default function ContactForm() {
     },
   });
 
-  const [recaptchaToken, setRecaptchaToken] = useState<string | null>();
+  // const [recaptchaToken, setRecaptchaToken] = useState<string | null>();
 
   return (
     <div className=" lg:w-4xl text-2xl">
@@ -131,7 +131,7 @@ export default function ContactForm() {
           <ReCAPTCHA
             sitekey="6Lf3P30rAAAAAMJn8XC16BDai-3i26xjhEKqNpqR"
             onChange={(token: string | null) => {
-              setRecaptchaToken(token);
+              // setRecaptchaToken(token);
               form.setValue("recaptcha", token || "");
             }}
           />

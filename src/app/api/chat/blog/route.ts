@@ -1,4 +1,4 @@
-import { getTokenFromCookies, getUserFromToken } from "@/lib/aut";
+import { getUserFromToken } from "@/lib/aut";
 import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import { OpenAI } from "openai";
@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
 
   //who is user? take ID
 
-  const user = await getUserFromToken(req);
+  const user = await getUserFromToken();
   if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }

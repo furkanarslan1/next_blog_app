@@ -112,6 +112,14 @@ import { NextRequest, NextResponse } from "next/server";
 import { v2 as cloudinary } from "cloudinary";
 import bcrypt from "bcryptjs";
 
+type UpdateUserData = Partial<{
+  firstName: string;
+  lastName: string;
+  email: string;
+  avatarUrl: string;
+  password: string;
+}>;
+
 // Cloudinary config
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME!,
@@ -180,7 +188,7 @@ export async function PUT(
       avatarUrl = uploaded.secure_url;
     }
 
-    const updateData: any = {
+    const updateData: UpdateUserData = {
       ...(firstName && { firstName }),
       ...(lastName && { lastName }),
       ...(email && { email }),
