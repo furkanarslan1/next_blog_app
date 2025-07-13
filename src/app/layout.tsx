@@ -5,6 +5,7 @@ import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 import AppInit from "@/components/user/Appinit";
 import { defaultMetadata } from "@/lib/seo/metadata";
+import MobileMenu from "@/components/mobile_menu/MobileMenu";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -54,9 +55,11 @@ export default function RootLayout({
         <main className="flex-1 pt-20 md:pt-32 px-2 sm:px-4 max-w-7xl mx-auto">
           <AppInit>{children}</AppInit>
         </main>
+
         <footer>
           <Footer />
         </footer>
+        <MobileMenu />
       </body>
     </html>
   );
