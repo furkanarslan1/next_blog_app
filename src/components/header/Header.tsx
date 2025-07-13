@@ -133,39 +133,45 @@ export default function Header() {
                 </div>
               </NavigationMenuTrigger>
               <NavigationMenuContent>
-                <NavigationMenuLink>
-                  <Link
-                    className="cursor-pointer font-bold p-2 rounded-md hover:bg-black hover:text-white"
-                    href={`/profile/${user?.username}/user-options`}
-                  >
-                    Options
-                  </Link>
-                </NavigationMenuLink>
-                <NavigationMenuLink>
-                  <Link
-                    className="cursor-pointer font-bold p-2 rounded-md hover:bg-black hover:text-white"
-                    href={`/profile/${user?.username}/user-comments`}
-                  >
-                    Comments
-                  </Link>
-                </NavigationMenuLink>
-                <NavigationMenuLink>
-                  <Link
-                    className="cursor-pointer font-bold p-2 rounded-md hover:bg-black hover:text-white"
-                    href={`/profile/${user?.username}/user-likes`}
-                  >
-                    Like
-                  </Link>
-                </NavigationMenuLink>
-                <NavigationMenuLink>
-                  {" "}
-                  <button
-                    className="cursor-pointer font-bold  hover:bg-black hover:text-white p-2 rounded-md "
-                    onClick={handleLogout}
-                  >
-                    <FaPowerOff className="hover:text-white " />
-                  </button>
-                </NavigationMenuLink>
+                <NavigationMenuContent>
+                  <NavigationMenuLink asChild>
+                    <Link
+                      className="cursor-pointer font-bold p-2 rounded-md hover:bg-black hover:text-white"
+                      href={`/profile/${user?.username}/user-options`}
+                    >
+                      Options
+                    </Link>
+                  </NavigationMenuLink>
+
+                  <NavigationMenuLink asChild>
+                    <Link
+                      className="cursor-pointer font-bold p-2 rounded-md hover:bg-black hover:text-white"
+                      href={`/profile/${user?.username}/user-comments`}
+                    >
+                      Comments
+                    </Link>
+                  </NavigationMenuLink>
+
+                  <NavigationMenuLink asChild>
+                    <Link
+                      className="cursor-pointer font-bold p-2 rounded-md hover:bg-black hover:text-white"
+                      href={`/profile/${user?.username}/user-likes`}
+                    >
+                      Likes
+                    </Link>
+                  </NavigationMenuLink>
+
+                  {/* Bu kısmı NavigationMenuLink içine alma! */}
+                  <div className="p-2">
+                    <button
+                      onClick={handleLogout}
+                      className="flex items-center gap-2 font-bold hover:bg-black hover:text-white p-2 rounded-md w-full"
+                    >
+                      <FaPowerOff />
+                      Logout
+                    </button>
+                  </div>
+                </NavigationMenuContent>
               </NavigationMenuContent>
             </NavigationMenuItem>
           </NavigationMenuList>
