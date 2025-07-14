@@ -6,6 +6,10 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+enum Role {
+  USER
+  ADMIN
+}
 
 model User {
   id             Int        @id @default(autoincrement())
@@ -16,16 +20,16 @@ model User {
   password       String
   avatarUrl      String?
 
-  role String @default("user") 
+  role Role @default(USER)
 
   createdAt      DateTime   @default(now())
 
   likedPosts     Post[]     @relation("PostLikes")
   likedComments  Comment[]  @relation("CommentLikes")
   comments       Comment[]
-  questions BlogQuestion[]
-
+  questions      BlogQuestion[]
 }
+
 
 model Post {
   id              Int        @id @default(autoincrement())

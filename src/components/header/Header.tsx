@@ -115,13 +115,13 @@ export default function Header() {
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="bg-black border-1 rounded-2xl">
+              <NavigationMenuTrigger className="bg-white text-black cursor-pointer border-1 rounded-2xl">
                 <div>
                   {user ? (
                     <p>{user.firstName}</p>
                   ) : (
                     <Link
-                      className="bg-white/80 text-black px-4 py-2 rounded-md hover:bg-white/60 transition-all duration-500"
+                      className="bg-white text-black px-4 py-2 rounded-md  transition-all duration-500"
                       href="/login"
                     >
                       Login
@@ -161,7 +161,7 @@ export default function Header() {
                 <div className="p-2">
                   <button
                     onClick={handleLogout}
-                    className="flex items-center gap-2 font-bold hover:bg-black hover:text-white p-2 rounded-md w-full"
+                    className="flex items-center gap-2 cursor-pointer font-bold hover:bg-black hover:text-white p-2 rounded-md"
                   >
                     <FaPowerOff />
                     Logout

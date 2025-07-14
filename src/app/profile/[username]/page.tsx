@@ -1,12 +1,18 @@
-"use client";
+import { getUserFromToken } from "@/lib/aut";
 
-import { useauthStore } from "@/lib/stores/authStore";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
-export default function ProfilePage() {
-  const user = useauthStore((state) => state.user);
+export default async function ProfilePage({
+  params,
+}: {
+  params: { username: string };
+}) {
+  const user = await getUserFromToken();
 
-  if (!user) return <p>Loading...</p>;
+  if (!user || user.username !== params.username) {
+    return redirect("/login");
+  }
 
   return (
     <div className="space-y-6 border p-6 rounded-2xl w-fit lg:w-4xl mx-auto text-center">

@@ -5,6 +5,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useauthStore } from "@/lib/stores/authStore";
+import Link from "next/link";
 
 const loginSchema = z.object({
   email: z.string().email("Please enter valid e-mail"),
@@ -85,11 +86,17 @@ export default function Login() {
         </div>
 
         {errorMsg && <p className="text-red-600 text-sm">{errorMsg}</p>}
+        <Link
+          className="border-b-1 pb-1 hover:font-extrabold transition-all duration-300"
+          href={"/register"}
+        >
+          <u className="">İf you dont have a account</u>
+        </Link>
 
         <button
           type="submit"
           disabled={isSubmitting}
-          className="bg-white  text-black font-bold px-4 py-2 rounded w-full hover:opacity-80 cursor-pointer "
+          className="bg-white mt-4  text-black font-bold px-4 py-2 rounded w-full hover:opacity-80 cursor-pointer "
         >
           {isSubmitting ? "logging in..." : "Login"}
         </button>
