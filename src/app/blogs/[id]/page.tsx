@@ -340,7 +340,7 @@ export default async function BlogDetailPage({
         username: comment.user.username ?? "",
         avatarUrl: comment.user.avatarUrl,
       },
-      likedComments: comment.likedByUsers.length > 0,
+      likedComments: comment.likedByUsers?.length > 0,
     })
   );
   const isLoggedIn = !!currentUserId;
@@ -349,7 +349,7 @@ export default async function BlogDetailPage({
   const likedStatus = post.likedByUsers && post.likedByUsers.length > 0;
 
   return (
-    <div className="p-6 max-w-4xl mx-auto space-y-8 text-sm md:text-lg lg:text-lg">
+    <div className="p-6 max-w-4xl mx-auto space-y-8 text-sm md:text-lg lg:text-lg relative">
       <h1 className="text-3xl font-bold border-b pb-4 text-center">
         {post.title}
       </h1>
@@ -408,7 +408,7 @@ export default async function BlogDetailPage({
         </div>
       )}
 
-      <div>
+      <div className="fixed abolute bottom-10 lg:bottom-0 right-10 lg:right-10 z-50  ">
         <BlogChatModal postId={post.id} isLoggedIn={isLoggedIn} />
       </div>
 

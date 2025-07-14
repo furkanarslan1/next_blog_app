@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { FaSpinner } from "react-icons/fa";
+import { FaBrain } from "react-icons/fa";
 
 interface BlogChatModalProps {
   postId: number;
@@ -69,8 +70,11 @@ export default function BlogChatModal({
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
-        <Button className="mt-4 w-full  bg-white text-black hover:bg-black hover:text-white hover:border-1 hover:border-white transition-all duration-300 cursor-pointer">
-          Ask a question about this blog
+        <Button className="mt-4 w-full  bg-white text-black hover:bg-black hover:text-white hover:border-1 hover:border-white transition-all duration-300 cursor-pointer rounded-full py-6">
+          <div className="flex flex-col items-center">
+            <FaBrain className="text-2xl" />
+            <p>Ask AI</p>
+          </div>
         </Button>
       </DialogTrigger>
 
