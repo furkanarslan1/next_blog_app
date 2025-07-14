@@ -5,15 +5,7 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const {
-      firstName,
-      lastName,
-      username,
-      email,
-      password,
-
-      role: _ignoredRoleFromClient,
-    } = body;
+    const { firstName, lastName, username, email, password } = body;
 
     const hashedPassword = await bcrypt.hash(password, 10);
 

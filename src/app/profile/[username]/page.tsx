@@ -6,11 +6,12 @@ import { redirect } from "next/navigation";
 export default async function ProfilePage({
   params,
 }: {
-  params: { username: string };
+  params: Promise<{ username: string }>;
 }) {
+  const { username } = await params;
   const user = await getUserFromToken();
 
-  if (!user || user.username !== params.username) {
+  if (!user || user.username !== username) {
     return redirect("/login");
   }
 

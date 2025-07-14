@@ -48,7 +48,7 @@ export default async function Footer() {
                 <li key={cat.id}>
                   <Link
                     className=" relative group px-2 py-1"
-                    href={`categories/${cat.slug}`}
+                    href={`/categories/${cat.slug}`}
                   >
                     {cat.name}{" "}
                     <span className="absolute left-1/2 bottom-0 h-[2px] w-0 bg-white group-hover:w-full group-hover:left-0 transition-all duration-500 "></span>

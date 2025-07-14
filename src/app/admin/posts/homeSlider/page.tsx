@@ -150,7 +150,7 @@ export default function AdminHomeSlider() {
   };
 
   return (
-    <div className="px-4 md:px-8 overflow-x-hidden">
+    <div className="px-4 md:px-8 overflow-x-hidden text-xs md:text-lg">
       <h1 className="text-center font-extrabold text-2xl border-b border-white pb-4">
         Home Slider
       </h1>

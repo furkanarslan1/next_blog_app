@@ -18,8 +18,8 @@ export default async function UserLayout({
   }
 
   return (
-    <div className="p-4 max-w-7xl mx-auto flex  gap-4 ">
-      <header className="flex flex-col items-center  gap-4 mb-4  ">
+    <div className="p-4 max-w-7xl mx-auto flex  gap-4 overflow-x-hidden ">
+      <header className=" ">
         <HeaderNav username={username} />
       </header>
       <main>{children}</main>

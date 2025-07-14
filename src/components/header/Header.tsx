@@ -61,7 +61,7 @@ export default function Header() {
     },
     {
       href: `/profile/${user?.username}`,
-      label: "Categories",
+      label: "Profile",
     },
   ];
   return (
@@ -131,6 +131,14 @@ export default function Header() {
               </NavigationMenuTrigger>
 
               <NavigationMenuContent>
+                <NavigationMenuLink asChild>
+                  <Link
+                    className="cursor-pointer font-bold p-2 rounded-md hover:bg-black hover:text-white"
+                    href={`/profile/${user?.username}/${user?.username}`}
+                  >
+                    Profile
+                  </Link>
+                </NavigationMenuLink>
                 <NavigationMenuLink asChild>
                   <Link
                     className="cursor-pointer font-bold p-2 rounded-md hover:bg-black hover:text-white"

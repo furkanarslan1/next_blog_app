@@ -128,7 +128,7 @@ export default function ContactForm() {
             )}
           />
           <ReCAPTCHA
-            sitekey="6Lf3P30rAAAAAMJn8XC16BDai-3i26xjhEKqNpqR"
+            sitekey="6LdZnoIrAAAAAB7pFz9P7NoH_iiMlS9hT0PiR27B"
             onChange={(token: string | null) => {
               // setRecaptchaToken(token);
               form.setValue("recaptcha", token || "");

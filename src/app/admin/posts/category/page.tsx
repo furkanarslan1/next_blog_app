@@ -76,7 +76,7 @@ export default function Category_admin() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-4">
+    <div className="max-w-6xl mx-auto p-4 overflow-x-hidden  text-xs md:text-lg">
       <div className="flex flex-col gap-8">
         <div className="flex flex-col gap-4 items-center">
           <h1 className="text-2xl underline">Add Category</h1>
@@ -101,7 +101,7 @@ export default function Category_admin() {
           {category &&
             category.map((cat) => (
               <li
-                className="flex flex-col gap-6 border-1 rounded-2xl p-6 shadow-white shadow-md "
+                className="flex flex-col gap-6 border-1 rounded-2xl py-4 shadow-white shadow-md max-w-full overflow-hidden"
                 key={cat.id}
               >
                 {editCategoryId === cat.id ? (

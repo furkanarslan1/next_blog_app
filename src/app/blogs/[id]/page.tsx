@@ -379,7 +379,9 @@ export default async function BlogDetailPage({
           <strong>Update:</strong>{" "}
           {format(new Date(post.updatedAt), "dd MMMM yyyy", { locale: tr })}
         </p>
-        <p>{/* <strong>Likes:</strong> {post.likeCount} */}</p>
+        <p>
+          <strong>Likes:</strong> {post.likeCount}
+        </p>
       </div>
 
       {post.tags && (
@@ -387,7 +389,7 @@ export default async function BlogDetailPage({
           {post.tags.split(",").map((tag: string) => (
             <span
               key={tag.trim()}
-              className="bg-white text-black text-sm px-3 py-1 rounded-full"
+              className=" bg-white text-black text-xs md:text-sm px-2 py-0.5 rounded-full"
             >
               #{tag.trim()}
             </span>
