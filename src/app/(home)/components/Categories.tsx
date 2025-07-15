@@ -21,6 +21,19 @@ export default function Categories({ category }: CategoriesProps) {
 
   const white = "to-white-50";
 
+  if (!category || category.length === 0) {
+    return (
+      <div className="md:grid grid-cols-2 gap-6 hidden">
+        {[...Array(4)].map((_, index) => (
+          <div
+            key={index}
+            className={`w-[200px] h-[200px] rounded-md bg-gray-300 animate-pulse`}
+          />
+        ))}
+      </div>
+    );
+  }
+
   return (
     <div className="md:grid grid-cols-2 gap-6 hidden">
       {category?.slice(0, 4).map((cat, index) => (
