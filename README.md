@@ -69,12 +69,12 @@ This is a modern, full-featured **AI-powered blog platform** built using **Next.
 
 ---
 
-<img src="/scai.webp" alt="ai" width="800">
-<img src="/sc5blogdet2.webp" alt="blog_detail" width="800">
-<img src="/sc4blogDet.webp" alt="blog_detail" width="800">
-<img src="/sc3hom2.webp" alt="home_page" width="800">
-<img src="/sc2home.webp" alt="home_page" width="800">
-<img src="/sc1newPost.webp" alt="new_post" width="800">
+<img src="./scai.webp" alt="ai" width="800">
+<img src="./sc5blogdet2.webp" alt="blog_detail" width="800">
+<img src="./sc4blogDet.webp" alt="blog_detail" width="800">
+<img src="./sc3hom2.webp" alt="home_page" width="800">
+<img src="./sc2home.webp" alt="home_page" width="800">
+<img src="./sc1newPost.webp" alt="new_post" width="800">
 
 ## 🧑‍💻 Getting Started
 
@@ -94,7 +94,7 @@ cd next_blog_app
  Setup environment variables
 Create a .env.local file and add the following:
 
-  DATABASE_URL=
+DATABASE_URL=
 JWT_SECRET=
 RESEND_API_KEY=
 OPENAI_API_KEY=
