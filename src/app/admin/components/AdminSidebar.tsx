@@ -27,12 +27,12 @@ export default function AdminSidebar() {
           <SheetDescription></SheetDescription>
         </SheetHeader>
         <div className="p-4 border-r-1 rounded-2xl flex flex-col gap-6">
-          <Link
+          {/* <Link
             href="/admin/posts/new"
             className="font-bold text-white border-1 px-4 py-2 rounded-2xl hover:bg-white hover:text-black transition-all duration-300"
           >
             Users
-          </Link>
+          </Link> */}
           <Link
             href="/admin/posts/new"
             className="font-bold text-white  border-1 px-4 py-2 rounded-2xl hover:bg-white hover:text-black transition-all duration-300"
@@ -54,12 +54,12 @@ export default function AdminSidebar() {
             Home Slider
           </Link>
 
-          <Link
+          {/* <Link
             href="/admin/posts/comments"
             className="font-bold text-white  border-1 px-4 py-2 rounded-2xl hover:bg-white hover:text-black transition-all duration-300"
           >
             Comments
-          </Link>
+          </Link> */}
 
           <Link
             href="/admin/posts/category"

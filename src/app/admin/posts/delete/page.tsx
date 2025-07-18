@@ -64,7 +64,7 @@ export default function AdminDeletePage() {
       <h1 className="text-center font-extrabold text-2xl border-b-1 pb-6">
         Delete Posts
       </h1>
-      <ul className="grid grid-col-1 md:grid-cols-3 lg:grid-cols-6 mt-8 p-4 gap-4">
+      <ul className="grid grid-col-1 md:grid-cols-3 lg:grid-cols-4 mt-8 p-4 gap-4">
         {posts.map((post) => (
           <li
             key={post.id}
