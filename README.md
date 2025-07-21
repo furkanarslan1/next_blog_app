@@ -4,7 +4,7 @@ This is a modern, full-featured **AI-powered blog platform** built using **Next.
 
 ## 🚀 Live Demo
 
-🔗 _Deploy URL (optional)_  
+🔗 \_Deploy URL (https://next-blog-app-furkan.vercel.app/)
 🧑‍💻 [GitHub Repository](https://github.com/furkanarslan1/next_blog_app)
 
 ---
